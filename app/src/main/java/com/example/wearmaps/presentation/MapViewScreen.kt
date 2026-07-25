@@ -9,6 +9,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.*
@@ -20,23 +22,18 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.nativeCanvas
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.rotary.onRotaryScrollEvent
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.wear.compose.material.Button
-import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Text
 import com.example.wearmaps.location.LocationManagerHelper
 import com.example.wearmaps.location.MapPin
 import com.example.wearmaps.map.MapTileFetcher
 import com.example.wearmaps.sensor.CompassHeadingListener
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import kotlin.math.*
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -49,7 +46,7 @@ fun MapViewScreen(
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
-    // Default center (Kochi / India or user's current GPS location)
+    // Default center
     var centerLat by remember { mutableStateOf(9.9312) }
     var centerLon by remember { mutableStateOf(76.2673) }
     var zoomLevel by remember { mutableStateOf(15) }
@@ -144,7 +141,6 @@ fun MapViewScreen(
             .pointerInput(Unit) {
                 detectDragGestures { change, dragAmount ->
                     change.consume()
-                    // Drag pan calculation
                     val metersPerPixel = 156543.03392 * cos(Math.toRadians(centerLat)) / 2.0.pow(zoomLevel.toDouble())
                     val latChange = (dragAmount.y * metersPerPixel) / 111111.0
                     val lonChange = -(dragAmount.x * metersPerPixel) / (111111.0 * cos(Math.toRadians(centerLat)))
@@ -162,16 +158,13 @@ fun MapViewScreen(
             val nativeCanvas = drawContext.canvas.nativeCanvas
             nativeCanvas.save()
 
-            // Rotate canvas if in Heading-Up mode
             if (isHeadingUpMode && headingAngle != 0f) {
                 nativeCanvas.rotate(-headingAngle, canvasWidth / 2f, canvasHeight / 2f)
             }
 
-            // Draw tiles
             val centerTile = tileFetcher.latLonToTile(centerLat, centerLon, zoomLevel)
             val tileSize = 256f
 
-            // Offset calculation
             val n = 2.0.pow(zoomLevel.toDouble())
             val exactX = (centerLon + 180.0) / 360.0 * n
             val latRad = Math.toRadians(centerLat)
@@ -203,7 +196,7 @@ fun MapViewScreen(
                 }
             }
 
-            // Draw User GPS Location Dot & Pulsing Ring
+            // Draw GPS Dot
             userGpsLocation?.let { gpsLoc ->
                 val gpsExactX = (gpsLoc.longitude + 180.0) / 360.0 * n
                 val gpsLatRad = Math.toRadians(gpsLoc.latitude)
@@ -215,7 +208,6 @@ fun MapViewScreen(
                 val userScreenX = screenCenterX + (gpsPixelX - centerPixelX).toFloat()
                 val userScreenY = screenCenterY + (gpsPixelY - centerPixelY).toFloat()
 
-                // Draw outer pulse
                 val pulsePaint = Paint().apply {
                     color = android.graphics.Color.argb(80, 0, 230, 118)
                     style = Paint.Style.FILL
@@ -223,7 +215,6 @@ fun MapViewScreen(
                 }
                 nativeCanvas.drawCircle(userScreenX, userScreenY, 20f, pulsePaint)
 
-                // Draw inner blue location dot
                 val dotPaint = Paint().apply {
                     color = android.graphics.Color.parseColor("#00E676")
                     style = Paint.Style.FILL
@@ -231,7 +222,6 @@ fun MapViewScreen(
                 }
                 nativeCanvas.drawCircle(userScreenX, userScreenY, 8f, dotPaint)
 
-                // Draw white core dot
                 val corePaint = Paint().apply {
                     color = android.graphics.Color.WHITE
                     style = Paint.Style.FILL
@@ -240,7 +230,7 @@ fun MapViewScreen(
                 nativeCanvas.drawCircle(userScreenX, userScreenY, 3f, corePaint)
             }
 
-            // Draw Saved Pins / Waypoints
+            // Draw Saved Pins
             savedPins.forEach { pin ->
                 val pinExactX = (pin.longitude + 180.0) / 360.0 * n
                 val pinLatRad = Math.toRadians(pin.latitude)
@@ -321,7 +311,7 @@ fun MapViewScreen(
                 }
             }
 
-            // Left Edge Controls: Recenter GPS & Toggle Heading Mode
+            // Left Edge Controls: Recenter GPS, Toggle Heading Mode & Manage Pins
             Column(
                 modifier = Modifier
                     .align(Alignment.CenterStart)
@@ -356,6 +346,16 @@ fun MapViewScreen(
                 ) {
                     Text(if (isHeadingUpMode) "🗺️" else "🧭", fontSize = 12.sp)
                 }
+                Box(
+                    modifier = Modifier
+                        .size(28.dp)
+                        .clip(CircleShape)
+                        .background(Color(0xDDAB47BC))
+                        .clickable { showPinDialog = true },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("📌", fontSize = 12.sp)
+                }
             }
 
             // Bottom Control Bar: Offline Pre-Download & Save Pin
@@ -376,7 +376,7 @@ fun MapViewScreen(
                         }
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
-                    Text("📍 Pin", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                    Text("+ Pin", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
                 }
 
                 Box(
@@ -393,6 +393,118 @@ fun MapViewScreen(
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
                     Text("⬇️ Offline", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                }
+            }
+        }
+
+        // Manage Saved Pins Modal Dialog
+        if (showPinDialog) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xF0000000))
+                    .padding(14.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(Color(0xFF1C1C1E))
+                        .padding(12.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text("📌 Saved Pins (${savedPins.size})", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        Box(
+                            modifier = Modifier
+                                .size(22.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFF333336))
+                                .clickable { showPinDialog = false },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("✕", color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(6.dp))
+
+                    if (savedPins.isEmpty()) {
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("No saved pins yet", color = Color.Gray, fontSize = 11.sp)
+                        }
+                    } else {
+                        LazyColumn(
+                            modifier = Modifier.weight(1f),
+                            verticalArrangement = Arrangement.spacedBy(6.dp)
+                        ) {
+                            items(savedPins) { pin ->
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clip(RoundedCornerShape(10.dp))
+                                        .background(Color(0xFF2C2C2E))
+                                        .clickable {
+                                            centerLat = pin.latitude
+                                            centerLon = pin.longitude
+                                            showPinDialog = false
+                                            Toast.makeText(context, "Jumped to ${pin.name}", Toast.LENGTH_SHORT).show()
+                                        }
+                                        .padding(horizontal = 8.dp, vertical = 6.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Column(modifier = Modifier.weight(1f)) {
+                                        Text(pin.name, color = Color(0xFFFFB300), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                        Text("%.4f, %.4f".format(pin.latitude, pin.longitude), color = Color.LightGray, fontSize = 9.sp)
+                                    }
+
+                                    // Delete Individual Pin Button
+                                    Box(
+                                        modifier = Modifier
+                                            .size(24.dp)
+                                            .clip(CircleShape)
+                                            .background(Color(0xFFD32F2F))
+                                            .clickable {
+                                                locationHelper.deletePin(pin.id)
+                                                savedPins = locationHelper.getSavedPins()
+                                                Toast.makeText(context, "Pin Deleted", Toast.LENGTH_SHORT).show()
+                                            },
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Text("🗑️", fontSize = 10.sp)
+                                    }
+                                }
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(6.dp))
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(Color(0xFFD32F2F))
+                                .clickable {
+                                    locationHelper.clearAllPins()
+                                    savedPins = locationHelper.getSavedPins()
+                                    Toast.makeText(context, "All Pins Deleted", Toast.LENGTH_SHORT).show()
+                                }
+                                .padding(vertical = 4.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("🗑️ Delete All Pins", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                        }
+                    }
                 }
             }
         }

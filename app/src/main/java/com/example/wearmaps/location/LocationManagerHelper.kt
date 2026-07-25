@@ -96,6 +96,10 @@ class LocationManagerHelper(private val context: Context) {
         savePinsToPrefs(pins)
     }
 
+    fun clearAllPins() {
+        prefs.edit().remove("saved_pins").apply()
+    }
+
     private fun savePinsToPrefs(pins: List<MapPin>) {
         val array = JSONArray()
         pins.forEach { pin ->
@@ -108,6 +112,7 @@ class LocationManagerHelper(private val context: Context) {
             }
             array.put(obj)
         }
+        prefs.edit().putString("saved_prefs", array.toString()).apply()
         prefs.edit().putString("saved_pins", array.toString()).apply()
     }
 }
