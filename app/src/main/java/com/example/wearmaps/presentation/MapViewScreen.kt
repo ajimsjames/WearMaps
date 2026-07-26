@@ -288,7 +288,7 @@ fun MapViewScreen(
             Row(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(top = 22.dp)
+                    .padding(top = 38.dp)
                     .clip(RoundedCornerShape(12.dp))
                     .background(Color(0xCC000000))
                     .padding(horizontal = 8.dp, vertical = 3.dp),
