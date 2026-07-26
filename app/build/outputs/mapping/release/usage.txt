@@ -35514,74 +35514,75 @@ androidx.lifecycle.ViewModelStore:
     public final androidx.lifecycle.ViewModel get(java.lang.String)
     public final java.util.HashSet keys()
     public static void put()
-androidx.lifecycle.ViewTreeLifecycleOwner$$InternalSyntheticThrowCCEIfNotNull$29$8544e0af77f373961eeeac37ee0c0498882380b5816f10220d115d407f3d4e74$0
-androidx.lifecycle.ViewTreeLifecycleOwner$$InternalSyntheticThrowCCEIfNotNull$31$d280d3c6cb9de0740c57da0731f2ffe773c52e69e24564cc9f6d2ff8db660d1f$0
 androidx.lifecycle.ViewTreeLifecycleOwner$findViewTreeLifecycleOwner$1:
     public static androidx.lifecycle.ViewModelStoreOwner invoke()
     public static androidx.lifecycle.LifecycleOwner invoke$1()
 androidx.lifecycle.ViewTreeLifecycleOwner$findViewTreeLifecycleOwner$2
 androidx.lifecycle.ViewTreeLifecycleOwner:
-    public static kotlinx.coroutines.JobImpl Job$default()
-    public static void cancel$default(kotlinx.coroutines.Job,java.lang.String)
+    public static final java.util.concurrent.CancellationException CancellationException(java.lang.String,java.lang.Throwable)
     public abstract void clearListener()
     public static boolean contains(int[],int)
+    public static final long convertDurationUnitOverflow(kotlin.time.DurationUnit,kotlin.time.DurationUnit)
     public static android.os.Bundle createBundle(android.os.Parcel,int)
     public static int[] createIntArray(android.os.Parcel,int)
     public static java.util.ArrayList createTypedList(android.os.Parcel,int,android.os.Parcelable$Creator)
-    public static final long durationOfMillis(long)
+    public static final void disposeOnCancellation(kotlinx.coroutines.CancellableContinuationImpl,kotlinx.coroutines.DisposableHandle)
     public static java.util.List emptyList()
-    public static final void ensureActive(kotlinx.coroutines.Job)
+    public static final boolean equals(char,char,boolean)
     public static final androidx.savedstate.SavedStateRegistryOwner get(android.view.View)
     public static java.lang.Object getCOROUTINE_SUSPENDED()
-    public static final java.lang.String getCoroutineName()
     public abstract com.google.android.gms.common.Feature[] getRequiredFeatures()
-    public static final boolean hasCopyableElements(kotlin.coroutines.CoroutineContext)
-    public static boolean isMutableMapEntry(java.lang.Object)
-    public static boolean isMutableSet(java.lang.Object)
-    public static final kotlinx.coroutines.StandaloneCoroutine launch(kotlinx.coroutines.CoroutineScope,kotlin.coroutines.CoroutineContext,int,kotlin.jvm.functions.Function2)
+    public static int getSign(int)
+    public static final java.lang.Throwable handlerException(java.lang.Throwable,java.lang.Throwable)
+    public static final boolean isWhitespace(char)
     public static kotlin.SynchronizedLazyImpl lazy(kotlin.jvm.functions.Function0)
     public static varargs java.util.ArrayList mutableListOf(java.lang.Object[])
-    public static final kotlin.coroutines.CoroutineContext newCoroutineContext(kotlinx.coroutines.CoroutineScope,kotlin.coroutines.CoroutineContext)
     public static final void probeCoroutineSuspended(kotlin.coroutines.Continuation)
     public static android.os.IBinder readIBinder(android.os.Parcel,int)
     public static long readLong(android.os.Parcel,int)
     public abstract void registerListener()
     public static final void resetAt(int,java.lang.Object[])
     public static final void resetRange(int,int,java.lang.Object[])
-    public static kotlin.sequences.SequencesKt__SequenceBuilderKt$sequence$$inlined$Sequence$1 sequence(kotlin.jvm.functions.Function2)
     public static final void set(android.view.View,androidx.lifecycle.LifecycleOwner)
     public static final void set(android.view.View,androidx.savedstate.SavedStateRegistryOwner)
-    public static final java.lang.Object setupTimeout(kotlinx.coroutines.TimeoutCoroutine,androidx.compose.ui.text.font.AsyncFontListLoader$loadWithTimeoutOrNull$2)
     public static void terminateCollectionToArray(int,java.lang.Object[])
     public static void throwIndexOverflow()
     public static androidx.compose.ui.platform.coreshims.ContentCaptureSessionCompat toStringHelper(java.lang.Object)
-    public static final java.lang.Object withTimeoutOrNull(long,androidx.compose.ui.text.font.AsyncFontListLoader$loadWithTimeoutOrNull$2,kotlin.coroutines.Continuation)
+    public static final java.lang.Object yield(androidx.compose.ui.text.font.AsyncFontListLoader$load$1)
     public abstract boolean zab()
     public static int zza(int)
 androidx.lifecycle.ViewTreeViewModelStoreOwner$$InternalSyntheticThrowCCEIfNotNull$15$ef03389fb5cf73e560a2fe60ad4fef2efea8524ceff193cbe013c253f06ed794$0
 androidx.lifecycle.ViewTreeViewModelStoreOwner$findViewTreeViewModelStoreOwner$1
 androidx.lifecycle.ViewTreeViewModelStoreOwner$findViewTreeViewModelStoreOwner$2
 androidx.lifecycle.ViewTreeViewModelStoreOwner:
-    public static final java.util.concurrent.CancellationException CancellationException(java.lang.String,java.lang.Throwable)
+    public static synthetic void cancel$default(kotlinx.coroutines.Job)
     public static void checkArgument(boolean)
     public static void checkNotEmpty(java.lang.String)
-    public static final long convertDurationUnitOverflow(kotlin.time.DurationUnit,kotlin.time.DurationUnit)
-    public static final void disposeOnCancellation(kotlinx.coroutines.CancellableContinuationImpl,kotlinx.coroutines.DisposableHandle)
+    public static float coerceAtLeast(float,float)
+    public static long coerceAtLeast(long)
+    public static float coerceAtMost(float,float)
+    public static long coerceAtMost(long,long)
+    public static long coerceIn(long,long,long)
+    public static kotlin.ranges.IntProgression downTo(int,int)
     public static final void enumEntries(java.lang.Enum[])
-    public static final boolean equals(char,char,boolean)
-    public static int getSign(int)
-    public static final java.lang.Throwable handlerException(java.lang.Throwable,java.lang.Throwable)
     public static boolean isWearable(android.content.Context)
-    public static final boolean isWhitespace(char)
     public static varargs float maxOf(float,float[])
     public static varargs float minOf(float,float[])
+    public abstract long nanoTime()
+    public abstract void parkNanos()
     public static kotlin.coroutines.CoroutineContext plus(kotlin.coroutines.CoroutineContext,kotlin.coroutines.CoroutineContext)
+    public abstract void registerTimeLoopThread()
     public static final void set(android.view.View,androidx.lifecycle.ViewModelStoreOwner)
+    public static final java.lang.Object toState(java.lang.Object,kotlin.jvm.functions.Function1)
+    public static java.lang.Object toState$default(java.lang.Object)
+    public abstract void trackTask()
+    public abstract void unTrackTask()
+    public abstract void unpark()
     public abstract void unregisterListener()
+    public abstract void unregisterTimeLoopThread()
     public static void writeBundle(android.os.Parcel,int,android.os.Bundle)
     public static void writeIBinder(android.os.Parcel,int,android.os.IBinder)
     public static void writeIntArray(android.os.Parcel,int,int[])
-    public static final java.lang.Object yield(androidx.compose.ui.text.font.AsyncFontListLoader$load$1)
     public static void zzd(android.os.Parcel,android.os.Parcelable,int)
 androidx.lifecycle.runtime.R$id
 androidx.lifecycle.viewmodel.CreationExtras$Empty:
@@ -35694,18 +35695,19 @@ androidx.startup.AppInitializer:
     public static boolean isEagerlyInitialized()
 androidx.startup.R$string
 androidx.startup.StartupLogger
+androidx.tracing.Trace$$InternalSyntheticThrowCCEIfNotNull$29$c5d6bcb75ad4e310b267134befbda6a167d29b9f47df159bc0e8cbff7981fd87$0
+androidx.tracing.Trace$$InternalSyntheticThrowCCEIfNotNull$31$c6277c3459d3a28384f714677037e3a67288b0224a10d6707732f8a0114382d6$0
 androidx.tracing.Trace:
-    public static synthetic void cancel$default(kotlinx.coroutines.Job)
-    public static float coerceAtLeast(float,float)
-    public static long coerceAtLeast(long)
-    public static float coerceAtMost(float,float)
-    public static long coerceAtMost(long,long)
-    public static long coerceIn(long,long,long)
+    public static kotlinx.coroutines.JobImpl Job$default()
+    public static void cancel$default(kotlinx.coroutines.Job,java.lang.String)
     public static final int differenceModulo(int,int,int)
     public static final long differenceModulo(long,long,long)
-    public static kotlin.ranges.IntProgression downTo(int,int)
+    public static final long durationOfMillis(long)
     public static final java.util.Set emptySet()
+    public static final void ensureActive(kotlinx.coroutines.Job)
     public static java.lang.Object fold(kotlin.coroutines.CoroutineContext$Element,java.lang.Object,kotlin.jvm.functions.Function2)
+    public static final java.lang.String getCoroutineName()
+    public static final boolean hasCopyableElements(kotlin.coroutines.CoroutineContext)
     public static boolean isAtLeastJellyBean()
     public static boolean isAtLeastJellyBeanMR2()
     public static boolean isAtLeastKitKatWatch()
@@ -35714,19 +35716,17 @@ androidx.tracing.Trace:
     public static boolean isAtLeastO()
     public static boolean isAtLeastQ()
     public static boolean isAtLeastR()
+    public static boolean isMutableMapEntry(java.lang.Object)
+    public static boolean isMutableSet(java.lang.Object)
     public static final androidx.compose.runtime.collection.IdentityArraySet$iterator$1 iterator(java.lang.Object[])
+    public static final kotlinx.coroutines.StandaloneCoroutine launch(kotlinx.coroutines.CoroutineScope,kotlin.coroutines.CoroutineContext,int,kotlin.jvm.functions.Function2)
     public static final int mod(int,int)
     public static final long mod(long,long)
-    public abstract long nanoTime()
-    public abstract void parkNanos()
-    public abstract void registerTimeLoopThread()
+    public static final kotlin.coroutines.CoroutineContext newCoroutineContext(kotlinx.coroutines.CoroutineScope,kotlin.coroutines.CoroutineContext)
+    public static kotlin.sequences.SequencesKt__SequenceBuilderKt$sequence$$inlined$Sequence$1 sequence(kotlin.jvm.functions.Function2)
     public static final java.util.Set setOf(java.lang.Object)
-    public static final java.lang.Object toState(java.lang.Object,kotlin.jvm.functions.Function1)
-    public static java.lang.Object toState$default(java.lang.Object)
-    public abstract void trackTask()
-    public abstract void unTrackTask()
-    public abstract void unpark()
-    public abstract void unregisterTimeLoopThread()
+    public static final java.lang.Object setupTimeout(kotlinx.coroutines.TimeoutCoroutine,androidx.compose.ui.text.font.AsyncFontListLoader$loadWithTimeoutOrNull$2)
+    public static final java.lang.Object withTimeoutOrNull(long,androidx.compose.ui.text.font.AsyncFontListLoader$loadWithTimeoutOrNull$2,kotlin.coroutines.Continuation)
 androidx.tracing.TraceApi18Impl
 androidx.versionedparcelable.ParcelImpl$1
 androidx.versionedparcelable.VersionedParcel:
@@ -35802,6 +35802,8 @@ androidx.wear.compose.materialcore.TextKt$Text$1:
 androidx.wear.compose.materialcore.TextKt
 com.example.wearmaps.MainActivity$$InternalSyntheticLambda$1$496a33d7a834f5f470570f1e24389932ec5f291cfb6af66d503af77b8e671242$0
 com.example.wearmaps.MainActivity:
+    static void <clinit>()
+com.example.wearmaps.location.GnssSatelliteInfo:
     static void <clinit>()
 com.example.wearmaps.location.LocationManagerHelper:
     static void <clinit>()
@@ -36743,7 +36745,6 @@ kotlin.jvm.internal.ClassReference:
     public static final java.util.HashMap classFqNames
     public static final java.util.HashMap primitiveFqNames
     public static final java.util.HashMap primitiveWrapperFqNames
-kotlin.jvm.internal.DefaultConstructorMarker
 kotlin.jvm.internal.FloatCompanionObject
 kotlin.jvm.internal.FunctionReference
 kotlin.jvm.internal.FunctionReferenceImpl:
@@ -37329,11 +37330,7 @@ kotlinx.coroutines.channels.ChannelSegment:
     public final java.lang.Object getElement$kotlinx_coroutines_core(int)
     public final java.lang.Object retrieveElement$kotlinx_coroutines_core(int)
     public static void storeElement$kotlinx_coroutines_core()
-kotlinx.coroutines.channels.ChannelsKt$$InternalSyntheticThrowCCEIfNotNull$7$90929e05b4351f02e817c7df1bd85d9b353d3eb7978409d0e1a42e0a53946abe$0
-kotlinx.coroutines.channels.ChannelsKt:
-    public static java.lang.Object constructor-impl$default()
-    public static synthetic java.lang.Object lock$default(kotlinx.coroutines.sync.MutexImpl,kotlin.coroutines.jvm.internal.ContinuationImpl)
-    public static synthetic void unlock$default(kotlinx.coroutines.sync.MutexImpl)
+kotlinx.coroutines.channels.ChannelsKt
 kotlinx.coroutines.channels.ChannelsKt__Channels_commonKt:
     public static final void checkParallelism(int)
     public static final void dispatcherFailure(kotlin.coroutines.Continuation,java.lang.Throwable)
@@ -37347,7 +37344,9 @@ kotlinx.coroutines.channels.ConflatedBufferedChannel:
     public final int capacity
     public static java.lang.Object trySendDropLatest-Mj0NB7M()
     public static java.lang.Object trySendDropOldest-JP2dKIU()
-kotlinx.coroutines.channels.ProduceKt
+kotlinx.coroutines.channels.ProduceKt:
+    public static final void callUndeliveredElement(kotlin.jvm.functions.Function1,java.lang.Object,kotlin.coroutines.CoroutineContext)
+    public static synthetic androidx.startup.StartupException callUndeliveredElementCatchingException$default(kotlin.jvm.functions.Function1,java.lang.Object)
 kotlinx.coroutines.channels.ProducerCoroutine:
     public static void cancel$kotlinx$coroutines$channels$ChannelCoroutine()
     public static void cancelInternal$kotlinx$coroutines$channels$ChannelCoroutine()
@@ -37372,13 +37371,15 @@ kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$2:
 kotlinx.coroutines.flow.FlowKt__BuildersKt
 kotlinx.coroutines.flow.FlowKt__ChannelsKt
 kotlinx.coroutines.flow.FlowKt__CollectKt
-kotlinx.coroutines.flow.FlowKt__ContextKt:
-    public static final void callUndeliveredElement(kotlin.jvm.functions.Function1,java.lang.Object,kotlin.coroutines.CoroutineContext)
-    public static synthetic androidx.startup.StartupException callUndeliveredElementCatchingException$default(kotlin.jvm.functions.Function1,java.lang.Object)
+kotlinx.coroutines.flow.FlowKt__ContextKt
 kotlinx.coroutines.flow.FlowKt__DistinctKt$defaultAreEquivalent$1:
     public static java.lang.Boolean invoke$12()
 kotlinx.coroutines.flow.FlowKt__DistinctKt
-kotlinx.coroutines.flow.FlowKt__EmittersKt
+kotlinx.coroutines.flow.FlowKt__EmittersKt$$InternalSyntheticThrowCCEIfNotNull$7$e725080ea2baf136ff3783a601e7cc03c4c9f6d9080b74e99a4753b5bc3a90b1$0
+kotlinx.coroutines.flow.FlowKt__EmittersKt:
+    public static java.lang.Object constructor-impl$default()
+    public static synthetic java.lang.Object lock$default(kotlinx.coroutines.sync.MutexImpl,kotlin.coroutines.jvm.internal.ContinuationImpl)
+    public static synthetic void unlock$default(kotlinx.coroutines.sync.MutexImpl)
 kotlinx.coroutines.flow.FlowKt__LimitKt
 kotlinx.coroutines.flow.FlowKt__MergeKt$mapLatest$1:
     public final java.lang.Object invoke$29()

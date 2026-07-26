@@ -2,9 +2,11 @@ package com.example.wearmaps.location
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.location.GnssStatus
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
 import org.json.JSONArray
 import org.json.JSONObject
@@ -17,6 +19,11 @@ data class MapPin(
     val timestamp: Long
 )
 
+data class GnssSatelliteInfo(
+    val usedInFixCount: Int = 0,
+    val totalInViewCount: Int = 0
+)
+
 class LocationManagerHelper(private val context: Context) {
 
     private val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -25,8 +32,16 @@ class LocationManagerHelper(private val context: Context) {
     var currentLocation: Location? = null
         private set
 
+    var gnssInfo: GnssSatelliteInfo = GnssSatelliteInfo()
+        private set
+
+    private var gnssCallback: Any? = null
+
     @SuppressLint("MissingPermission")
-    fun startLocationUpdates(onLocationChanged: (Location) -> Unit) {
+    fun startLocationUpdates(
+        onLocationChanged: (Location) -> Unit,
+        onGnssStatusChanged: ((GnssSatelliteInfo) -> Unit)? = null
+    ) {
         val listener = object : LocationListener {
             override fun onLocationChanged(location: Location) {
                 currentLocation = location
@@ -35,6 +50,29 @@ class LocationManagerHelper(private val context: Context) {
             override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
             override fun onProviderEnabled(provider: String) {}
             override fun onProviderDisabled(provider: String) {}
+        }
+
+        // Register GNSS Satellite Status Listener
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            val callback = object : GnssStatus.Callback() {
+                override fun onSatelliteStatusChanged(status: GnssStatus) {
+                    val total = status.satelliteCount
+                    var used = 0
+                    for (i in 0 until total) {
+                        if (status.usedInFix(i)) {
+                            used++
+                        }
+                    }
+                    gnssInfo = GnssSatelliteInfo(usedInFixCount = used, totalInViewCount = total)
+                    onGnssStatusChanged?.invoke(gnssInfo)
+                }
+            }
+            gnssCallback = callback
+            try {
+                locationManager.registerGnssStatusCallback(callback, null)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
 
         try {
@@ -51,6 +89,14 @@ class LocationManagerHelper(private val context: Context) {
             }
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    fun stopGnssUpdates() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && gnssCallback != null) {
+            try {
+                locationManager.unregisterGnssStatusCallback(gnssCallback as GnssStatus.Callback)
+            } catch (e: Exception) {}
         }
     }
 

@@ -29,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Text
+import com.example.wearmaps.location.GnssSatelliteInfo
 import com.example.wearmaps.location.LocationManagerHelper
 import com.example.wearmaps.location.MapPin
 import com.example.wearmaps.map.MapTileFetcher
@@ -51,10 +52,14 @@ fun MapViewScreen(
     var centerLon by remember { mutableStateOf(76.2673) }
     var zoomLevel by remember { mutableStateOf(15) }
 
+    // Auto-Center / Tracking Mode: Keeps map centered on user GPS location as they move!
+    var isAutoCenterMode by remember { mutableStateOf(true) }
+
     var headingAngle by remember { mutableStateOf(0f) }
     var isHeadingUpMode by remember { mutableStateOf(false) }
 
     var userGpsLocation by remember { mutableStateOf(locationHelper.currentLocation) }
+    var gnssSatelliteInfo by remember { mutableStateOf(locationHelper.gnssInfo) }
     var savedPins by remember { mutableStateOf(locationHelper.getSavedPins()) }
     var showPinDialog by remember { mutableStateOf(false) }
 
@@ -91,15 +96,24 @@ fun MapViewScreen(
                 headingAngle = 0f
             }
         }
-        locationHelper.startLocationUpdates { loc ->
-            userGpsLocation = loc
-            if (centerLat == 9.9312 && centerLon == 76.2673) {
-                centerLat = loc.latitude
-                centerLon = loc.longitude
+
+        locationHelper.startLocationUpdates(
+            onLocationChanged = { loc ->
+                userGpsLocation = loc
+                // Automatically re-center map on user's moving location if Auto-Center mode is ON
+                if (isAutoCenterMode) {
+                    centerLat = loc.latitude
+                    centerLon = loc.longitude
+                }
+            },
+            onGnssStatusChanged = { info ->
+                gnssSatelliteInfo = info
             }
-        }
+        )
+
         onDispose {
             compassListener.stop()
+            locationHelper.stopGnssUpdates()
         }
     }
 
@@ -141,6 +155,10 @@ fun MapViewScreen(
             .pointerInput(Unit) {
                 detectDragGestures { change, dragAmount ->
                     change.consume()
+
+                    // User manually panned map: turn off auto-center tracking mode
+                    isAutoCenterMode = false
+
                     val metersPerPixel = 156543.03392 * cos(Math.toRadians(centerLat)) / 2.0.pow(zoomLevel.toDouble())
                     val latChange = (dragAmount.y * metersPerPixel) / 111111.0
                     val lonChange = -(dragAmount.x * metersPerPixel) / (111111.0 * cos(Math.toRadians(centerLat)))
@@ -196,7 +214,7 @@ fun MapViewScreen(
                 }
             }
 
-            // Draw GPS Dot
+            // Draw User GPS Location Marker
             userGpsLocation?.let { gpsLoc ->
                 val gpsExactX = (gpsLoc.longitude + 180.0) / 360.0 * n
                 val gpsLatRad = Math.toRadians(gpsLoc.latitude)
@@ -208,26 +226,29 @@ fun MapViewScreen(
                 val userScreenX = screenCenterX + (gpsPixelX - centerPixelX).toFloat()
                 val userScreenY = screenCenterY + (gpsPixelY - centerPixelY).toFloat()
 
+                // Outer pulsing accuracy ring
                 val pulsePaint = Paint().apply {
                     color = android.graphics.Color.argb(80, 0, 230, 118)
                     style = Paint.Style.FILL
                     isAntiAlias = true
                 }
-                nativeCanvas.drawCircle(userScreenX, userScreenY, 20f, pulsePaint)
+                nativeCanvas.drawCircle(userScreenX, userScreenY, 22f, pulsePaint)
 
+                // Main Location Dot
                 val dotPaint = Paint().apply {
                     color = android.graphics.Color.parseColor("#00E676")
                     style = Paint.Style.FILL
                     isAntiAlias = true
                 }
-                nativeCanvas.drawCircle(userScreenX, userScreenY, 8f, dotPaint)
+                nativeCanvas.drawCircle(userScreenX, userScreenY, 9f, dotPaint)
 
+                // Inner Core Dot
                 val corePaint = Paint().apply {
                     color = android.graphics.Color.WHITE
                     style = Paint.Style.FILL
                     isAntiAlias = true
                 }
-                nativeCanvas.drawCircle(userScreenX, userScreenY, 3f, corePaint)
+                nativeCanvas.drawCircle(userScreenX, userScreenY, 3.5f, corePaint)
             }
 
             // Draw Saved Pins
@@ -264,7 +285,7 @@ fun MapViewScreen(
         // Circular Smartwatch Overlay Controls
         Box(modifier = Modifier.fillMaxSize()) {
 
-            // Top Status Bar: Zoom Level & Mode
+            // Top Status Bar: GNSS Satellite Count, Zoom Level & Heading Mode
             Row(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
@@ -274,10 +295,22 @@ fun MapViewScreen(
                     .padding(horizontal = 8.dp, vertical = 3.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                val satColor = when {
+                    gnssSatelliteInfo.usedInFixCount >= 6 -> Color(0xFF00E676)
+                    gnssSatelliteInfo.usedInFixCount >= 3 -> Color(0xFFFFD600)
+                    else -> Color(0xFFFF5252)
+                }
+
                 Text(
-                    text = "Zoom: $zoomLevel | ${if (isHeadingUpMode) "🗺️ Heading" else "🧭 North"}",
+                    text = "📡 ${gnssSatelliteInfo.usedInFixCount}/${gnssSatelliteInfo.totalInViewCount}",
+                    color = satColor,
+                    fontSize = 9.5.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = " | Z:$zoomLevel | ${if (isHeadingUpMode) "🗺️ Track" else "🧭 North"}",
                     color = Color.White,
-                    fontSize = 10.sp,
+                    fontSize = 9.5.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -311,23 +344,25 @@ fun MapViewScreen(
                 }
             }
 
-            // Left Edge Controls: Recenter GPS, Toggle Heading Mode & Manage Pins
+            // Left Edge Controls: Auto-Center GPS, Toggle Heading Mode & Manage Pins
             Column(
                 modifier = Modifier
                     .align(Alignment.CenterStart)
                     .padding(start = 6.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                // Auto-Center GPS Button (Glowing Cyan when tracking mode is ON)
                 Box(
                     modifier = Modifier
                         .size(28.dp)
                         .clip(CircleShape)
-                        .background(Color(0xDD1565C0))
+                        .background(if (isAutoCenterMode) Color(0xDD00E676) else Color(0xDD1565C0))
                         .clickable {
                             userGpsLocation?.let { loc ->
+                                isAutoCenterMode = true // Enable continuous auto-center tracking
                                 centerLat = loc.latitude
                                 centerLon = loc.longitude
-                                Toast.makeText(context, "Centered on GPS", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "🎯 Auto-Center ON", Toast.LENGTH_SHORT).show()
                             } ?: run {
                                 Toast.makeText(context, "Acquiring GPS...", Toast.LENGTH_SHORT).show()
                             }
@@ -455,6 +490,7 @@ fun MapViewScreen(
                                         .clip(RoundedCornerShape(10.dp))
                                         .background(Color(0xFF2C2C2E))
                                         .clickable {
+                                            isAutoCenterMode = false // Switch off auto-center to jump to saved pin
                                             centerLat = pin.latitude
                                             centerLon = pin.longitude
                                             showPinDialog = false
