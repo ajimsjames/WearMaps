@@ -1,72 +1,44 @@
-# 🗺️ Wear Maps: Standalone Wear OS 2D Map Navigator
+# 🗺️ WearMaps (v1.2.0)
 
-[![Wear OS](https://img.shields.io/badge/Platform-Wear%20OS%204-blue.svg)](https://developer.android.com/wear)
-[![Release](https://img.shields.io/badge/Release-v1.0.0-green.svg)](https://github.com/ajimsjames/WearMaps/releases/tag/v1.0.0)
-[![License](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
+**Standalone Offline Map Navigation & GNSS Satellite Tracking App for Wear OS (Samsung Galaxy Watch 6)**
 
-A standalone **offline 2D vector map tile navigator**, **hardware compass heading rotator**, and **waypoint manager** designed specifically for Wear OS smartwatches (Samsung Galaxy Watch 4/5/6, Pixel Watch, TicWatch). Built with Kotlin and Jetpack Compose for Wear OS by **Aju George**.
+Developed by **Aju George**.
 
 ---
 
 ## ✨ Features
 
-* **🗺️ 2D OpenStreetMap Tile Engine**: High-performance 2D map tile renderer with custom OLED Dark Mode filtering to prevent screen burn-in and minimize battery draw on AMOLED smartwatch displays.
-* **🧭 Compass Heading Rotation**: Hardware rotation vector sensor continuously rotates the map based on your wrist direction ("Heading-Up" 🗺️ vs "North-Up" 🧭 mode).
-* **🔄 Rotary Bezel & Touch Zoom**: Smoothly zoom in/out using physical watch rotating bezels (Galaxy Watch 6) or touch `+` / `-` controls.
-* **🎯 GPS Real-Time Location Lock**: Pulsing live location dot with instant map re-centering.
-* **📍 Offline Waypoint Saver**: Pin and save custom offline locations (e.g. Parked Car 🚗, Hotel 🏨, Home 🏠).
-* **⬇️ Offline Region Pre-Downloader**: Download and store map tiles locally on watch storage for full offline navigation without smartphone or cellular data.
+- 🎯 **Continuous GPS Auto-Center Tracking (`🎯 Mode`)**: Automatically keeps the map centered on your position as you walk, drive, or run. Manually dragging the map smoothly pauses auto-centering for free exploration.
+- 📡 **GNSS Satellite Counter Overlay**: Real-time display of connected GPS satellites (`e.g. 📡 8/14 Sats`) with color-coded signal quality status (🟢 6+ Sats, 🟡 3-5 Sats, 🔴 <3 Sats).
+- ⬇️ **Offline Region Pre-Downloader**: Caches map tiles locally on watch storage for complete offline usage without internet or phone pairing.
+- 🧭 **Heading Up / North Up Toggle**: Rotates the map dynamically using watch hardware compass sensors.
+- 📌 **Custom Waypoint Pins**: Save favorite coordinates directly on the map with custom labels and coordinate management.
+- ⚙️ **Bezel-Aligned Navigation & About Dialog**: Curved bezel top navigation bar (`CurvedLayout`) tailored for 480×480 px circular smartwatch displays.
 
 ---
 
-## 📸 Navigation Controls
+## 🛠️ Architecture & Tech Stack
 
-1. **Bezel / Crown Scroll**: Smooth Zoom In / Zoom Out.
-2. **Touch Drag**: Drag across screen to pan map.
-3. **🎯 Button**: Recenter map to your current GPS position.
-4. **🧭 / 🗺️ Button**: Toggle between North-Up and Heading-Up compass map rotation.
-5. **📍 Pin Button**: Drop and save offline location markers.
-6. **⬇️ Offline Button**: Pre-download current map region for offline use.
+- **Framework**: Android Wear OS (Min SDK 30 / Target SDK 33)
+- **UI Engine**: Wear Compose + Jetpack Compose + CurvedLayout
+- **Map Engine**: OpenStreetMap raster tiles fetched & rendered via native Skia 2D Canvas with dark mode color matrix filter.
+- **Hardware Integration**: Android LocationManager + GnssStatus.Callback + Compass Sensors.
 
 ---
 
-## 🚀 Installation
-
-### Option 1: Direct ADB Wireless Install
-Download the pre-compiled [`app-release.apk`](https://github.com/ajimsjames/WearMaps/releases/download/v1.0.0/app-release.apk) from the [v1.0.0 Release Page](https://github.com/ajimsjames/WearMaps/releases/tag/v1.0.0) and install over ADB:
+## 📦 Installation
 
 ```bash
-adb connect <your-watch-ip>:5555
-adb install -r app-release.apk
-```
+# Connect to Galaxy Watch 6 via Wireless ADB
+adb connect <WATCH_IP>:<PORT>
 
-### Option 2: Build from Source
-```bash
-git clone https://github.com/ajimsjames/WearMaps.git
-cd WearMaps
+# Build and Install Release APK
 ./gradlew assembleRelease
+adb install -r app/build/outputs/apk/release/app-release.apk
 ```
-The APK will be generated at `app/build/outputs/apk/release/app-release.apk`.
 
 ---
 
-## 🛠️ Tech Stack & Requirements
+## 📄 License & Credits
 
-* **Platform**: Wear OS 3.0+ (API 30+)
-* **Language**: Kotlin 1.9
-* **UI Framework**: Jetpack Compose for Wear OS & Skia Canvas
-* **Map Engine**: OpenStreetMap (OSM) Slippy Tiles with Disk Caching
-* **Hardware Sensors**: `Sensor.TYPE_ROTATION_VECTOR`, `LocationManager` (GPS)
-
----
-
-## 👨‍💻 Developer & Author
-
-* **Author**: Aju George ([@ajimsjames](https://github.com/ajimsjames))
-* **Email**: `ajimsjames@gmail.com`
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+Created and maintained by **Aju George**. Distributed for Wear OS devices.

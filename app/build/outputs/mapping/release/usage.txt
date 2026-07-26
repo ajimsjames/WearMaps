@@ -2474,7 +2474,6 @@ androidx.compose.foundation.layout.SizeKt$requiredWidth-3ABfNKs$$inlined$debugIn
 androidx.compose.foundation.layout.SizeKt$requiredWidthIn-VpY3zN4$$inlined$debugInspectorInfo$1
 androidx.compose.foundation.layout.SizeKt$size-VpY3zN4$$inlined$debugInspectorInfo$1
 androidx.compose.foundation.layout.SizeKt$sizeIn-qDBjuR0$$inlined$debugInspectorInfo$1
-androidx.compose.foundation.layout.SizeKt$width-3ABfNKs$$inlined$debugInspectorInfo$1
 androidx.compose.foundation.layout.SizeKt$widthIn-VpY3zN4$$inlined$debugInspectorInfo$1
 androidx.compose.foundation.layout.SizeKt:
     public static final androidx.compose.ui.Modifier defaultMinSize-VpY3zN4(androidx.compose.ui.Modifier,float,float)
@@ -2498,7 +2497,6 @@ androidx.compose.foundation.layout.SizeKt:
     public static final androidx.compose.ui.Modifier size-VpY3zN4(androidx.compose.ui.Modifier,float,float)
     public static final androidx.compose.ui.Modifier sizeIn-qDBjuR0(androidx.compose.ui.Modifier,float,float,float,float)
     public static synthetic androidx.compose.ui.Modifier sizeIn-qDBjuR0$default(androidx.compose.ui.Modifier,float,float,float,float,int,java.lang.Object)
-    public static final androidx.compose.ui.Modifier width-3ABfNKs(androidx.compose.ui.Modifier,float)
     public static final androidx.compose.ui.Modifier widthIn-VpY3zN4(androidx.compose.ui.Modifier,float,float)
     public static synthetic androidx.compose.ui.Modifier widthIn-VpY3zN4$default(androidx.compose.ui.Modifier,float,float,int,java.lang.Object)
     public static final androidx.compose.ui.Modifier wrapContentHeight(androidx.compose.ui.Modifier,androidx.compose.ui.Alignment$Vertical,boolean)
@@ -2683,11 +2681,7 @@ androidx.compose.foundation.lazy.LazyListBeyondBoundsState:
     public final androidx.compose.foundation.lazy.LazyListState getState()
 androidx.compose.foundation.lazy.LazyListInterval:
     public static final int $stable
-androidx.compose.foundation.lazy.LazyListIntervalContent$item$1
-androidx.compose.foundation.lazy.LazyListIntervalContent$item$2
-androidx.compose.foundation.lazy.LazyListIntervalContent$item$3
 androidx.compose.foundation.lazy.LazyListIntervalContent:
-    public void item(java.lang.Object,java.lang.Object,kotlin.jvm.functions.Function3)
     public void stickyHeader(java.lang.Object,java.lang.Object,kotlin.jvm.functions.Function3)
 androidx.compose.foundation.lazy.LazyListItemInfo:
     public java.lang.Object getContentType()
@@ -2732,9 +2726,7 @@ androidx.compose.foundation.lazy.LazyListScope:
     public static synthetic void access$item$jd(androidx.compose.foundation.lazy.LazyListScope,java.lang.Object,kotlin.jvm.functions.Function3)
     public static synthetic void access$items$jd(androidx.compose.foundation.lazy.LazyListScope,int,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function4)
     public static synthetic void access$items$jd(androidx.compose.foundation.lazy.LazyListScope,int,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function4)
-    public void item(java.lang.Object,java.lang.Object,kotlin.jvm.functions.Function3)
     public synthetic void item(java.lang.Object,kotlin.jvm.functions.Function3)
-    public static synthetic void item$default(androidx.compose.foundation.lazy.LazyListScope,java.lang.Object,java.lang.Object,kotlin.jvm.functions.Function3,int,java.lang.Object)
     public static synthetic void item$default(androidx.compose.foundation.lazy.LazyListScope,java.lang.Object,kotlin.jvm.functions.Function3,int,java.lang.Object)
     public synthetic void items(int,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function4)
     public static synthetic void items$default(androidx.compose.foundation.lazy.LazyListScope,int,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function4,int,java.lang.Object)
@@ -4481,7 +4473,6 @@ androidx.compose.runtime.Composer:
     public boolean changed(byte)
     public boolean changed(char)
     public boolean changed(double)
-    public boolean changed(float)
     public boolean changed(short)
     public abstract void disableReusing()
     public abstract void disableSourceInformation()
@@ -4519,7 +4510,6 @@ androidx.compose.runtime.ComposerImpl:
     public boolean changed(byte)
     public boolean changed(char)
     public boolean changed(double)
-    public boolean changed(float)
     public boolean changed(short)
     public void disableReusing()
     public void disableSourceInformation()
@@ -6215,11 +6205,16 @@ androidx.compose.ui.draw.DrawModifier:
 androidx.compose.ui.draw.DrawModifierKt:
     public static final androidx.compose.ui.draw.CacheDrawModifierNode CacheDrawModifierNode(kotlin.jvm.functions.Function1)
     public static final androidx.compose.ui.Modifier drawWithCache(androidx.compose.ui.Modifier,kotlin.jvm.functions.Function1)
-    public static final androidx.compose.ui.Modifier drawWithContent(androidx.compose.ui.Modifier,kotlin.jvm.functions.Function1)
 androidx.compose.ui.draw.DrawResult
 androidx.compose.ui.draw.DrawWithCacheElement
-androidx.compose.ui.draw.DrawWithContentElement
-androidx.compose.ui.draw.DrawWithContentModifier
+androidx.compose.ui.draw.DrawWithContentElement:
+    public final kotlin.jvm.functions.Function1 component1()
+    public final androidx.compose.ui.draw.DrawWithContentElement copy(kotlin.jvm.functions.Function1)
+    public static synthetic androidx.compose.ui.draw.DrawWithContentElement copy$default(androidx.compose.ui.draw.DrawWithContentElement,kotlin.jvm.functions.Function1,int,java.lang.Object)
+    public final kotlin.jvm.functions.Function1 getOnDraw()
+    public void inspectableProperties(androidx.compose.ui.platform.InspectorInfo)
+androidx.compose.ui.draw.DrawWithContentModifier:
+    public final kotlin.jvm.functions.Function1 getOnDraw()
 androidx.compose.ui.draw.EmptyBuildDrawCacheParams
 androidx.compose.ui.draw.PainterElement
 androidx.compose.ui.draw.PainterModifierKt
@@ -11634,7 +11629,9 @@ androidx.compose.ui.util.ListUtilsKt:
     public static final int fastSumBy(java.util.List,kotlin.jvm.functions.Function1)
     public static final java.util.List fastZip(java.util.List,java.util.List,kotlin.jvm.functions.Function2)
     public static final java.util.List fastZipWithNext(java.util.List,kotlin.jvm.functions.Function2)
-androidx.compose.ui.util.MathHelpersKt
+androidx.compose.ui.util.MathHelpersKt:
+    public static final int lerp(int,int,float)
+    public static final long lerp(long,long,float)
 androidx.compose.ui.util.R
 androidx.compose.ui.viewinterop.AndroidViewHolder$Companion$OnCommitAffectingUpdate$1
 androidx.compose.ui.viewinterop.AndroidViewHolder$Companion
@@ -16286,8 +16283,23 @@ androidx.viewpager.widget.ViewPager$SimpleOnPageChangeListener
 androidx.viewpager.widget.ViewPager$ViewPositionComparator
 androidx.viewpager.widget.ViewPager
 androidx.wear.compose.foundation.AnchorChangeHandler
-androidx.wear.compose.foundation.AnchorType$Companion
-androidx.wear.compose.foundation.AnchorType
+androidx.wear.compose.foundation.AnchorType$Companion:
+    public final float getEnd-IUldqTk()
+    public final float getStart-IUldqTk()
+androidx.wear.compose.foundation.AnchorType:
+    private final float ratio
+    private synthetic void <init>(float)
+    public static final synthetic float access$getEnd$cp()
+    public static final synthetic float access$getStart$cp()
+    public static final synthetic androidx.wear.compose.foundation.AnchorType box-impl(float)
+    public boolean equals(java.lang.Object)
+    public static boolean equals-impl(float,java.lang.Object)
+    public static final boolean equals-impl0(float,float)
+    public int hashCode()
+    public static int hashCode-impl(float)
+    public java.lang.String toString()
+    public static java.lang.String toString-impl(float)
+    public final synthetic float unbox-impl()
 androidx.wear.compose.foundation.AngularWidthSizeWrapper
 androidx.wear.compose.foundation.ArcPaddingValues
 androidx.wear.compose.foundation.ArcPaddingValuesImpl
@@ -16326,27 +16338,58 @@ androidx.wear.compose.foundation.CompositionLocalsKt$LocalSwipeToDismissContentS
 androidx.wear.compose.foundation.CompositionLocalsKt$getReduceMotionFlowFor$1$1
 androidx.wear.compose.foundation.CompositionLocalsKt$getReduceMotionFlowFor$contentObserver$1
 androidx.wear.compose.foundation.CompositionLocalsKt
-androidx.wear.compose.foundation.ContainerChild$SubComposition$2
-androidx.wear.compose.foundation.ContainerChild
+androidx.wear.compose.foundation.ContainerChild:
+    public final boolean getReverseLayout$compose_foundation_release()
 androidx.wear.compose.foundation.CurvedAlignment$Angular$Companion
 androidx.wear.compose.foundation.CurvedAlignment$Angular
-androidx.wear.compose.foundation.CurvedAlignment$Radial$Companion
-androidx.wear.compose.foundation.CurvedAlignment$Radial
+androidx.wear.compose.foundation.CurvedAlignment$Radial$Companion:
+    public final float Custom-Tt6c-v8(float)
+    public final float getInner-BjYtHoc()
+    public final float getOuter-BjYtHoc()
+androidx.wear.compose.foundation.CurvedAlignment$Radial:
+    private final float ratio
+    private synthetic void <init>(float)
+    public static final synthetic float access$getInner$cp()
+    public static final synthetic float access$getOuter$cp()
+    public static final synthetic androidx.wear.compose.foundation.CurvedAlignment$Radial box-impl(float)
+    public boolean equals(java.lang.Object)
+    public static boolean equals-impl(float,java.lang.Object)
+    public static final boolean equals-impl0(float,float)
+    public int hashCode()
+    public static int hashCode-impl(float)
+    public java.lang.String toString()
+    public static java.lang.String toString-impl(float)
 androidx.wear.compose.foundation.CurvedAlignment
 androidx.wear.compose.foundation.CurvedBoxChild
 androidx.wear.compose.foundation.CurvedBoxKt
 androidx.wear.compose.foundation.CurvedChild$SubComposition$1
-androidx.wear.compose.foundation.CurvedChild
+androidx.wear.compose.foundation.CurvedChild:
+    public final float getMeasureRadius$compose_foundation_release()
 androidx.wear.compose.foundation.CurvedColumnChild
 androidx.wear.compose.foundation.CurvedColumnKt
-androidx.wear.compose.foundation.CurvedComposableChild$SubComposition$1
-androidx.wear.compose.foundation.CurvedComposableChild
-androidx.wear.compose.foundation.CurvedComposableKt$place$1$1
-androidx.wear.compose.foundation.CurvedComposableKt
-androidx.wear.compose.foundation.CurvedDirection$Angular$Companion
-androidx.wear.compose.foundation.CurvedDirection$Angular
-androidx.wear.compose.foundation.CurvedDirection$Radial$Companion
-androidx.wear.compose.foundation.CurvedDirection$Radial
+androidx.wear.compose.foundation.CurvedComposableChild:
+    public final boolean getClockwise()
+    public final kotlin.jvm.functions.Function3 getContent()
+    public final float getRadialAlignment-BjYtHoc()
+androidx.wear.compose.foundation.CurvedDirection$Angular:
+    private final int value
+    private synthetic void <init>(int)
+    public static final synthetic androidx.wear.compose.foundation.CurvedDirection$Angular box-impl(int)
+    public boolean equals(java.lang.Object)
+    public static boolean equals-impl(int,java.lang.Object)
+    public int hashCode()
+    public java.lang.String toString()
+    public final synthetic int unbox-impl()
+androidx.wear.compose.foundation.CurvedDirection$Radial:
+    private final int value
+    private synthetic void <init>(int)
+    public static final synthetic androidx.wear.compose.foundation.CurvedDirection$Radial box-impl(int)
+    public boolean equals(java.lang.Object)
+    public static boolean equals-impl(int,java.lang.Object)
+    public int hashCode()
+    public java.lang.String toString()
+    public static java.lang.String toString-impl(int)
+    public final synthetic int unbox-impl()
 androidx.wear.compose.foundation.CurvedDirection
 androidx.wear.compose.foundation.CurvedDrawKt$angularGradientBackground$1$invoke$$inlined$sortedBy$1
 androidx.wear.compose.foundation.CurvedDrawKt$angularGradientBackground$1
@@ -16354,27 +16397,64 @@ androidx.wear.compose.foundation.CurvedDrawKt$background$1
 androidx.wear.compose.foundation.CurvedDrawKt$background$2
 androidx.wear.compose.foundation.CurvedDrawKt$radialGradientBackground$1
 androidx.wear.compose.foundation.CurvedDrawKt
-androidx.wear.compose.foundation.CurvedLayoutDirection
-androidx.wear.compose.foundation.CurvedLayoutInfo
-androidx.wear.compose.foundation.CurvedLayoutKt$CurvedLayout$1$1
-androidx.wear.compose.foundation.CurvedLayoutKt$CurvedLayout$2$1$3
-androidx.wear.compose.foundation.CurvedLayoutKt$CurvedLayout$2$1
-androidx.wear.compose.foundation.CurvedLayoutKt$CurvedLayout$4
-androidx.wear.compose.foundation.CurvedLayoutKt
-androidx.wear.compose.foundation.CurvedMeasureScope
-androidx.wear.compose.foundation.CurvedModifier$Companion
+androidx.wear.compose.foundation.CurvedLayoutDirection:
+    public static final int $stable
+    public final androidx.wear.compose.foundation.CurvedLayoutDirection copy-3m8pbNU(androidx.wear.compose.foundation.CurvedDirection$Radial,androidx.wear.compose.foundation.CurvedDirection$Angular)
+    public static synthetic androidx.wear.compose.foundation.CurvedLayoutDirection copy-3m8pbNU$default(androidx.wear.compose.foundation.CurvedLayoutDirection,androidx.wear.compose.foundation.CurvedDirection$Radial,androidx.wear.compose.foundation.CurvedDirection$Angular,int,java.lang.Object)
+    public final int getAngular-gmlPZk4$compose_foundation_release()
+    public final androidx.compose.ui.unit.LayoutDirection getLayoutDirection$compose_foundation_release()
+    public final int getRadial-Ysh6JRM$compose_foundation_release()
+    public final boolean outsideIn()
+androidx.wear.compose.foundation.CurvedLayoutInfo:
+    public static final int $stable
+    public final long computePointOffset-dBAh8RU(float,float)
+    public final float getInnerRadius()
+    public final float getMeasureRadius()
+    public final float getSweepRadians()
+    public final float getThickness()
+androidx.wear.compose.foundation.CurvedLayoutKt:
+    public static final long offsetFromDistanceAndAngle(float,float)
+androidx.wear.compose.foundation.CurvedMeasureScope:
+    public static final int $stable
+    public final androidx.wear.compose.foundation.CurvedLayoutDirection getCurvedLayoutDirection()
+    public final androidx.compose.ui.unit.Density getSubDensity()
+    public int roundToPx--R2X_6o(long)
+    public float toDp-u2uoSUM(int)
+    public long toDpSize-k-rfVVM(long)
+    public androidx.compose.ui.geometry.Rect toRect(androidx.compose.ui.unit.DpRect)
+    public long toSp-kPz2Gy4(int)
 androidx.wear.compose.foundation.CurvedModifier$DefaultImpls
-androidx.wear.compose.foundation.CurvedModifier
-androidx.wear.compose.foundation.CurvedModifierImpl
-androidx.wear.compose.foundation.CurvedModifierKt
+androidx.wear.compose.foundation.CurvedModifier:
+    public static synthetic androidx.wear.compose.foundation.CurvedModifier access$then$jd(androidx.wear.compose.foundation.CurvedModifier,androidx.wear.compose.foundation.CurvedModifier)
+    public androidx.wear.compose.foundation.CurvedModifier then(androidx.wear.compose.foundation.CurvedModifier)
+androidx.wear.compose.foundation.CurvedModifierImpl:
+    public static final int $stable
+    private final java.util.List elements
+    static void <clinit>()
+    public void <init>(java.util.List)
+androidx.wear.compose.foundation.CurvedModifierKt:
+    public static final androidx.wear.compose.foundation.CurvedModifier then(androidx.wear.compose.foundation.CurvedModifier,androidx.wear.compose.foundation.Element)
 androidx.wear.compose.foundation.CurvedPaddingKt
 androidx.wear.compose.foundation.CurvedParentDataKt$weight$1
 androidx.wear.compose.foundation.CurvedParentDataKt
-androidx.wear.compose.foundation.CurvedRowChild$doRadialPosition$totalSweep$1
-androidx.wear.compose.foundation.CurvedRowChild
+androidx.wear.compose.foundation.CurvedRowChild:
+    public static final int $stable
+    public synthetic void <init>(androidx.wear.compose.foundation.CurvedLayoutDirection,androidx.wear.compose.foundation.CurvedAlignment$Radial,kotlin.jvm.functions.Function1,int,kotlin.jvm.internal.DefaultConstructorMarker)
 androidx.wear.compose.foundation.CurvedRowKt
-androidx.wear.compose.foundation.CurvedScope
-androidx.wear.compose.foundation.CurvedScopeParentData
+androidx.wear.compose.foundation.CurvedScopeParentData:
+    public static final int $stable
+    private float weight
+    static void <clinit>()
+    public void <init>()
+    public void <init>(float)
+    public synthetic void <init>(float,int,kotlin.jvm.internal.DefaultConstructorMarker)
+    public final float component1()
+    public final androidx.wear.compose.foundation.CurvedScopeParentData copy(float)
+    public static synthetic androidx.wear.compose.foundation.CurvedScopeParentData copy$default(androidx.wear.compose.foundation.CurvedScopeParentData,float,int,java.lang.Object)
+    public boolean equals(java.lang.Object)
+    public int hashCode()
+    public final void setWeight(float)
+    public java.lang.String toString()
 androidx.wear.compose.foundation.CurvedSizeKt
 androidx.wear.compose.foundation.CurvedTextChild$1
 androidx.wear.compose.foundation.CurvedTextChild$SubComposition$2
@@ -16387,7 +16467,6 @@ androidx.wear.compose.foundation.CurvedTextStyle
 androidx.wear.compose.foundation.CurvedTextStyleKt
 androidx.wear.compose.foundation.DrawWrapper
 androidx.wear.compose.foundation.EdgeSwipeState
-androidx.wear.compose.foundation.Element
 androidx.wear.compose.foundation.ExpandableItemsDefaults
 androidx.wear.compose.foundation.ExpandableKt$expandableButton$1
 androidx.wear.compose.foundation.ExpandableKt$expandableItemImpl$1$2$1$1
@@ -16424,7 +16503,8 @@ androidx.wear.compose.foundation.InternalMutatorMutex$mutateWith$2
 androidx.wear.compose.foundation.InternalMutatorMutex
 androidx.wear.compose.foundation.PaddingWrapper
 androidx.wear.compose.foundation.ParentDataWrapper
-androidx.wear.compose.foundation.PartialLayoutInfo
+androidx.wear.compose.foundation.PartialLayoutInfo:
+    public static final int $stable
 androidx.wear.compose.foundation.R
 androidx.wear.compose.foundation.ReduceMotion
 androidx.wear.compose.foundation.ResourcesKt
@@ -21426,7 +21506,6 @@ kotlin.collections.CollectionsKt__CollectionsKt:
     public static final java.lang.Object[] collectionToArrayCommonImpl(java.util.Collection)
     public static final java.lang.Object[] collectionToArrayCommonImpl(java.util.Collection,java.lang.Object[])
     private static final boolean containsAll(java.util.Collection,java.util.Collection)
-    public static final kotlin.ranges.IntRange getIndices(java.util.Collection)
     private static final java.lang.Object ifEmpty(java.util.Collection,kotlin.jvm.functions.Function0)
     private static final boolean isNotEmpty(java.util.Collection)
     private static final boolean isNullOrEmpty(java.util.Collection)
@@ -21718,7 +21797,6 @@ kotlin.collections.CollectionsKt___CollectionsKt:
     public static final int sumOfByte(java.lang.Iterable)
     public static final double sumOfDouble(java.lang.Iterable)
     private static final double sumOfDouble(java.lang.Iterable,kotlin.jvm.functions.Function1)
-    public static final float sumOfFloat(java.lang.Iterable)
     public static final int sumOfInt(java.lang.Iterable)
     private static final int sumOfInt(java.lang.Iterable,kotlin.jvm.functions.Function1)
     public static final long sumOfLong(java.lang.Iterable)
@@ -26493,8 +26571,8 @@ androidx.collection.internal.ContainerHelpersKt:
     public static final int idealIntArraySize(int)
     public static final int idealLongArraySize(int)
 androidx.collection.internal.Lock
-androidx.collection.internal.LruHashMap$$InternalSyntheticThrowCCEIfNotNull$128$9182fdc70c4aab23d87821d35066ac6ebc557e7562178d1f6b055c3786959437$0
-androidx.collection.internal.LruHashMap$$InternalSyntheticThrowCCEIfNotNull$128$9182fdc70c4aab23d87821d35066ac6ebc557e7562178d1f6b055c3786959437$1
+androidx.collection.internal.LruHashMap$$InternalSyntheticThrowCCEIfNotNull$129$9182fdc70c4aab23d87821d35066ac6ebc557e7562178d1f6b055c3786959437$0
+androidx.collection.internal.LruHashMap$$InternalSyntheticThrowCCEIfNotNull$129$9182fdc70c4aab23d87821d35066ac6ebc557e7562178d1f6b055c3786959437$1
 androidx.collection.internal.LruHashMap:
     public static void accept()
     public static void addFontFamily()
@@ -27445,7 +27523,8 @@ androidx.compose.foundation.layout.BoxMeasurePolicy$measure$2:
     public final void invoke(androidx.compose.ui.layout.Placeable$PlacementScope)
 androidx.compose.foundation.layout.BoxMeasurePolicy$measure$5:
     public final void invoke(androidx.compose.ui.layout.Placeable$PlacementScope)
-androidx.compose.foundation.layout.BoxScope
+androidx.compose.foundation.layout.BoxScope:
+    public abstract androidx.compose.ui.Modifier align(androidx.compose.ui.BiasAlignment)
 androidx.compose.foundation.layout.BoxScopeInstance$align$$inlined$debugInspectorInfo$1
 androidx.compose.foundation.layout.ColumnScope:
     public abstract androidx.compose.ui.Modifier weight()
@@ -27503,9 +27582,11 @@ androidx.compose.foundation.layout.PaddingKt$padding$1
 androidx.compose.foundation.layout.PaddingKt$padding$2$$InternalSyntheticThrowCCEIfNotNull$19$e77628e9ac1b17ada35fcbc34ea214dee13e552c0e80b5eff2b12aea565f5ead$0
 androidx.compose.foundation.layout.PaddingKt$padding$2
 androidx.compose.foundation.layout.PaddingKt$padding$3$$InternalSyntheticThrowCCEIfNotNull$21$42845ab4d218f0c770370ab4b3373d6fc120156cdb60fa030c13e84e1f082c93$0
-androidx.compose.foundation.layout.PaddingKt$padding$3$$InternalSyntheticThrowCCEIfNotNull$21$739727459e9e6b2b3a2e1a868003d34c0f494ef72749de2f6f0f61e278ca6719$0
+androidx.compose.foundation.layout.PaddingKt$padding$3$$InternalSyntheticThrowCCEIfNotNull$21$685740984b2c109010ac69eb0162b3727586538070d2c82bd28543fd160ab85b$0
 androidx.compose.foundation.layout.PaddingKt$padding$3$$InternalSyntheticThrowCCEIfNotNull$21$af4842a18a5c4d922e7dd60e78dd12094bad68ed51eb5e64bfb4e1b05529bbd3$0
-androidx.compose.foundation.layout.PaddingKt$padding$3
+androidx.compose.foundation.layout.PaddingKt$padding$3:
+    public final void invoke$1()
+    public final void invoke$2()
 androidx.compose.foundation.layout.PaddingKt:
     public static final float getWeight(androidx.compose.foundation.layout.RowColumnParentData)
     public static final boolean isRelative()
@@ -27573,6 +27654,7 @@ androidx.compose.foundation.layout.SizeElement:
     public static void update$10()
 androidx.compose.foundation.layout.SizeKt$height-3ABfNKs$$inlined$debugInspectorInfo$1
 androidx.compose.foundation.layout.SizeKt$size-3ABfNKs$$inlined$debugInspectorInfo$1
+androidx.compose.foundation.layout.SizeKt$width-3ABfNKs$$inlined$debugInspectorInfo$1
 androidx.compose.foundation.layout.SizeKt:
     public static final androidx.compose.foundation.layout.FillElement FillWholeMaxHeight
     public static final androidx.compose.foundation.layout.WrapContentElement WrapContentHeightCenter
@@ -27640,6 +27722,12 @@ androidx.compose.foundation.lazy.LazyListInterval:
     public static kotlin.jvm.functions.Function4 getItem()
     public final kotlin.jvm.functions.Function1 getKey()
     public final kotlin.jvm.functions.Function1 getType()
+androidx.compose.foundation.lazy.LazyListIntervalContent$item$1:
+    public final java.lang.Object invoke(int)
+androidx.compose.foundation.lazy.LazyListIntervalContent$item$2
+androidx.compose.foundation.lazy.LazyListIntervalContent$item$3:
+    public final void invoke(androidx.compose.foundation.lazy.LazyItemScope,int,androidx.compose.runtime.Composer,int)
+    public static android.graphics.Typeface invoke-DPcqOEQ()
 androidx.compose.foundation.lazy.LazyListIntervalContent:
     public static final int $stable
     public java.util.List _headerIndexes
@@ -27647,6 +27735,7 @@ androidx.compose.foundation.lazy.LazyListIntervalContent:
     public static java.util.List getHeaderIndexes()
     public final androidx.compose.foundation.lazy.layout.IntervalList getIntervals()
     public static androidx.compose.foundation.lazy.layout.MutableIntervalList getIntervals()
+    public final void item()
     public final void items()
 androidx.compose.foundation.lazy.LazyListItemAnimator$ItemInfo:
     public androidx.compose.foundation.lazy.layout.LazyLayoutAnimation[] animations
@@ -27759,6 +27848,7 @@ androidx.compose.foundation.lazy.LazyListMeasuredItem:
     public static void setNonScrollableItem()
 androidx.compose.foundation.lazy.LazyListMeasuredItemProvider
 androidx.compose.foundation.lazy.LazyListScope:
+    public abstract void item()
     public abstract void items()
 androidx.compose.foundation.lazy.LazyListScrollPosition:
     public static final int $stable
@@ -28032,7 +28122,6 @@ androidx.compose.foundation.lazy.layout.Lazy_androidKt
 androidx.compose.foundation.lazy.layout.MutableIntervalList:
     public static final int $stable
     static void <clinit>()
-    public static void addInterval()
     public static boolean contains()
     public final void forEach()
     public static androidx.compose.foundation.lazy.layout.IntervalList$Interval getIntervalForIndex()
@@ -28300,6 +28389,7 @@ androidx.compose.runtime.Composer:
     static void <clinit>()
     public abstract void apply(java.lang.Object,kotlin.jvm.functions.Function2)
     public abstract androidx.compose.runtime.CompositionContext buildContext()
+    public abstract boolean changed(float)
     public abstract boolean changed(int)
     public abstract boolean changed(long)
     public abstract boolean changed(java.lang.Object)
@@ -28341,7 +28431,7 @@ androidx.compose.runtime.Composer:
     public abstract void startReusableNode()
     public abstract void updateRememberedValue(java.lang.Object)
     public abstract void useNode()
-androidx.compose.runtime.ComposerImpl$$InternalSyntheticThrowCCEIfNotNull$142$063a0a8cadbfa8d63e10930c0b04c2427b8214f8ac50581fc7ccbadab9fc87ea$0
+androidx.compose.runtime.ComposerImpl$$InternalSyntheticThrowCCEIfNotNull$143$063a0a8cadbfa8d63e10930c0b04c2427b8214f8ac50581fc7ccbadab9fc87ea$0
 androidx.compose.runtime.ComposerImpl$CompositionContextHolder:
     public static androidx.compose.runtime.ComposerImpl$CompositionContextImpl getRef()
 androidx.compose.runtime.ComposerImpl$CompositionContextImpl:
@@ -29452,6 +29542,7 @@ androidx.compose.runtime.external.kotlinx.collections.immutable.implementations.
     public static int getExclusion-0nO6VwU()
     public static int getExit-dhqQ-8s()
     public static int getFill-TiuSbCo()
+    public static long getGray-0d7_KjU()
     public static int getHardlight-0nO6VwU()
     public static int getHue-0nO6VwU()
     public static long getInfinite-F1C5BW0()
@@ -29972,11 +30063,16 @@ androidx.compose.ui.draw.ClipKt
 androidx.compose.ui.draw.DrawBackgroundModifier:
     public static final int $stable
     static void <clinit>()
-    public static void setOnDraw()
+    public final void setOnDraw()
 androidx.compose.ui.draw.DrawBehindElement:
     public static androidx.compose.ui.draw.DrawBackgroundModifier create()
     public static void update$14()
 androidx.compose.ui.draw.DrawCacheModifier
+androidx.compose.ui.draw.DrawWithContentElement:
+    public static androidx.compose.ui.draw.DrawWithContentModifier create()
+    public static void update$15()
+androidx.compose.ui.draw.DrawWithContentModifier:
+    public final void setOnDraw()
 androidx.compose.ui.focus.BeyondBoundsLayoutKt
 androidx.compose.ui.focus.CustomDestinationResult$EnumUnboxingLocalUtility
 androidx.compose.ui.focus.CustomDestinationResult
@@ -30039,7 +30135,7 @@ androidx.compose.ui.focus.FocusOwnerImpl$$InternalSyntheticThrowCCEIfNotNull$70$
 androidx.compose.ui.focus.FocusOwnerImpl$WhenMappings
 androidx.compose.ui.focus.FocusOwnerImpl$modifier$1:
     public final androidx.compose.ui.focus.FocusTargetNode create()
-    public final void update$15()
+    public final void update$16()
 androidx.compose.ui.focus.FocusOwnerImpl$moveFocus$foundNextItem$1$WhenMappings
 androidx.compose.ui.focus.FocusOwnerImpl$moveFocus$foundNextItem$1
 androidx.compose.ui.focus.FocusOwnerImpl:
@@ -30103,7 +30199,7 @@ androidx.compose.ui.focus.FocusRequester:
     public static void requestFocus()
 androidx.compose.ui.focus.FocusRequesterElement:
     public static androidx.compose.ui.focus.FocusRequesterNode create()
-    public static void update$16()
+    public static void update$17()
 androidx.compose.ui.focus.FocusRequesterModifier
 androidx.compose.ui.focus.FocusRequesterModifierKt:
     public static final boolean clearChildFocus(androidx.compose.ui.focus.FocusTargetNode,boolean,boolean)
@@ -30124,7 +30220,7 @@ androidx.compose.ui.focus.FocusTargetModifierNode
 androidx.compose.ui.focus.FocusTargetModifierNodeKt
 androidx.compose.ui.focus.FocusTargetNode$FocusTargetElement:
     public final androidx.compose.ui.focus.FocusTargetNode create()
-    public final void update$15()
+    public final void update$16()
 androidx.compose.ui.focus.FocusTargetNode$WhenMappings
 androidx.compose.ui.focus.FocusTargetNode$invalidateFocus$1
 androidx.compose.ui.focus.FocusTargetNode:
@@ -30385,7 +30481,7 @@ androidx.compose.ui.graphics.Float16:
 androidx.compose.ui.graphics.GraphicsLayerElement:
     public final androidx.compose.ui.graphics.RenderEffect renderEffect
     public static androidx.compose.ui.graphics.SimpleGraphicsLayerModifier create()
-    public static void update$17()
+    public static void update$18()
 androidx.compose.ui.graphics.GraphicsLayerModifierKt$$InternalSyntheticThrowCCEIfNotNull$65$8c21f35c66b589b0ee4700ba967c86d207cd0a6fb36ac4788b4572ad944d6757$0
 androidx.compose.ui.graphics.GraphicsLayerModifierKt$$InternalSyntheticThrowCCEIfNotNull$68$554df34a61435c353d36fc21f1597a09191c1dfb5b472dbdc8fa61e8d1c67df6$0
 androidx.compose.ui.graphics.GraphicsLayerModifierKt:
@@ -30496,14 +30592,12 @@ androidx.compose.ui.graphics.ReusableGraphicsLayerScope:
     public final void setRenderEffect()
     public final void setRotationX(float)
     public final void setRotationY(float)
-    public final void setRotationZ(float)
     public final void setScaleX(float)
     public final void setScaleY(float)
     public final void setShadowElevation(float)
     public final void setShape(androidx.compose.ui.graphics.Shape)
     public static void setSize-uvyYCjk()
     public final void setSpotShadowColor-8_81llA(long)
-    public final void setTransformOrigin-__ExYCQ(long)
     public final void setTranslationX(float)
     public final void setTranslationY(float)
 androidx.compose.ui.graphics.ShaderBrush
@@ -31126,7 +31220,7 @@ androidx.compose.ui.input.key.KeyEvent_androidKt
 androidx.compose.ui.input.key.KeyInputElement:
     public final kotlin.jvm.functions.Function1 onPreKeyEvent
     public static androidx.compose.ui.input.key.KeyInputNode create()
-    public static void update$18()
+    public static void update$19()
 androidx.compose.ui.input.key.KeyInputModifierKt:
     public static final long getKey-ZmokQxo(android.view.KeyEvent)
 androidx.compose.ui.input.key.KeyInputNode:
@@ -31292,30 +31386,21 @@ androidx.compose.ui.input.pointer.PointerIcon$Companion:
     public static final androidx.compose.ui.input.pointer.PointerIcon Text
     public static androidx.compose.ui.input.pointer.PointerIcon getDefault()
 androidx.compose.ui.input.pointer.PointerIconKt$$InternalSyntheticThrowCCEIfNotNull$25$9a48e3268b3430cebc09f3b4db3a8b1e04b577152b4c15698b908b3afa751e6b$0
-androidx.compose.ui.input.pointer.PointerIconKt$$InternalSyntheticThrowCCEIfNotNull$93$a74c8d5b9ad056dc5d759494b709925f8d68aae37838819cd7250a2cff7426fc$0
+androidx.compose.ui.input.pointer.PointerIconKt$$InternalSyntheticThrowCCEIfNotNull$96$a74c8d5b9ad056dc5d759494b709925f8d68aae37838819cd7250a2cff7426fc$0
 androidx.compose.ui.input.pointer.PointerIconKt:
     public static androidx.compose.ui.unit.DensityImpl Density$default()
     public static final boolean access$isMainThread()
     public static final int ceilToInt(float)
-    public static void checkArgument(java.lang.String,boolean)
-    public static void checkArgumentNonnegative(int,java.lang.String)
-    public static void checkState(java.lang.String,boolean)
     public static final long coerceIn-8ffj60Q(long,int)
     public static final float correctBlurRadius(float)
-    public abstract android.app.Activity getActivity()
     public static final int getAndroidTypefaceStyle(boolean,boolean)
     public static final int getAndroidTypefaceStyle-FO1MlWM(androidx.compose.ui.text.font.FontWeight,int)
-    public abstract android.content.Context getContext()
     public static final boolean getDispatchedToAPointerInputModifier-impl(int)
     public static final boolean hasFontAttributes(androidx.compose.ui.text.SpanStyle)
     public static final boolean isInPath(androidx.compose.ui.graphics.Path,float,float)
-    public abstract void onStartActivityFromFragment()
-    public static androidx.core.content.res.FontResourcesParserCompat$FamilyResourceEntry parse(android.content.res.XmlResourceParser,android.content.res.Resources)
-    public static void skip(android.content.res.XmlResourceParser)
     public static final java.lang.Object synthesizeTypeface-FxwP2eA(int,java.lang.Object,androidx.compose.ui.text.font.FontWeight,int)
-    public abstract android.os.Bundle toBundle()
-    public static java.util.ArrayList toByteArrayList(java.lang.String[])
     public static final java.util.Locale toJavaLocale(androidx.compose.ui.text.intl.Locale)
+    public abstract android.content.LocusId toLocusId()
 androidx.compose.ui.input.pointer.PointerIconService:
     public abstract void setIcon(androidx.compose.ui.input.pointer.PointerIcon)
 androidx.compose.ui.input.pointer.PointerIcon_androidKt
@@ -31368,17 +31453,21 @@ androidx.compose.ui.input.pointer.PointerInputEventProcessor:
     static void <clinit>()
 androidx.compose.ui.input.pointer.PointerInputEventProcessorKt:
     public static final int ProcessResult(boolean,boolean)
-    public abstract androidx.compose.ui.input.pointer.PointerInputEventProcessorKt add()
-    public static void closeQuietly(java.io.Closeable)
-    public abstract int commit()
-    public abstract int commitAllowingStateLoss()
-    public static boolean copyToFile(java.io.File,java.io.InputStream)
+    public static void checkArgument(java.lang.String,boolean)
+    public static void checkArgumentNonnegative(int,java.lang.String)
+    public static void checkState(java.lang.String,boolean)
     public static final void drawParagraphs-7AXcY_I(androidx.compose.ui.text.MultiParagraph,androidx.compose.ui.graphics.Canvas,androidx.compose.ui.graphics.Brush,float,androidx.compose.ui.graphics.Shadow,androidx.compose.ui.text.style.TextDecoration,androidx.compose.ui.graphics.drawscope.DrawStyle,int)
+    public abstract android.app.Activity getActivity()
+    public abstract android.content.Context getContext()
     public abstract java.util.List getSettings()
     public static final boolean hasCollectionInfo(androidx.compose.ui.semantics.SemanticsNode)
     public static final boolean hasFlag(int)
     public static final androidx.compose.ui.modifier.ProvidableModifierLocal modifierLocalOf(kotlin.jvm.functions.Function0)
-    public abstract androidx.compose.ui.input.pointer.PointerInputEventProcessorKt remove()
+    public abstract void onStartActivityFromFragment()
+    public static androidx.core.content.res.FontResourcesParserCompat$FamilyResourceEntry parse(android.content.res.XmlResourceParser,android.content.res.Resources)
+    public static void skip(android.content.res.XmlResourceParser)
+    public abstract android.os.Bundle toBundle()
+    public static java.util.ArrayList toByteArrayList(java.lang.String[])
 androidx.compose.ui.input.pointer.PointerInputFilter
 androidx.compose.ui.input.pointer.PointerInputModifier
 androidx.compose.ui.input.pointer.PointerInputResetException
@@ -31411,7 +31500,7 @@ androidx.compose.ui.input.pointer.ProcessResult
 androidx.compose.ui.input.pointer.SuspendPointerInputElement:
     static void <clinit>()
     public static androidx.compose.ui.input.pointer.SuspendingPointerInputModifierNodeImpl create()
-    public static void update$20()
+    public static void update$21()
 androidx.compose.ui.input.pointer.SuspendingPointerInputFilterKt:
     public static final androidx.compose.ui.Modifier pointerInput(androidx.compose.ui.Modifier,kotlin.jvm.functions.Function2)
 androidx.compose.ui.input.pointer.SuspendingPointerInputModifierNode:
@@ -31476,7 +31565,7 @@ androidx.compose.ui.input.pointer.util.VelocityTracker:
 androidx.compose.ui.input.rotary.RotaryInputElement:
     public final kotlin.jvm.functions.Function1 onPreRotaryScrollEvent
     public static androidx.compose.ui.input.rotary.RotaryInputNode create()
-    public static void update$21()
+    public static void update$22()
 androidx.compose.ui.input.rotary.RotaryInputModifierNode:
     public abstract boolean onPreRotaryScrollEvent(androidx.compose.ui.input.rotary.RotaryScrollEvent)
     public abstract boolean onRotaryScrollEvent(androidx.compose.ui.input.rotary.RotaryScrollEvent)
@@ -31536,7 +31625,7 @@ androidx.compose.ui.layout.LayoutCoordinates:
 androidx.compose.ui.layout.LayoutCoordinatesKt
 androidx.compose.ui.layout.LayoutElement:
     public static androidx.compose.ui.layout.LayoutModifierImpl create()
-    public static void update$22()
+    public static void update$23()
 androidx.compose.ui.layout.LayoutInfo
 androidx.compose.ui.layout.LayoutKt$materializerOf$1$$InternalSyntheticThrowCCEIfNotNull$15$2b18e9285b4658cf656e64f70b1f230f1609abcef5fd050c70c1101c1c165d46$0
 androidx.compose.ui.layout.LayoutKt$materializerOf$1$$InternalSyntheticThrowCCEIfNotNull$15$9a0663b7a5c30e5b042fe63698995f2ffc158e1d5ec275a4aed903d118802db7$0
@@ -31694,9 +31783,14 @@ androidx.compose.ui.modifier.ModifierLocalModifierNodeKt$$InternalSyntheticThrow
 androidx.compose.ui.modifier.ModifierLocalModifierNodeKt$$InternalSyntheticThrowCCEIfNotNull$83$312727e67df27638d2904d51e256d7614d581d440b0e01bcead5b79699a7717a$0
 androidx.compose.ui.modifier.ModifierLocalModifierNodeKt:
     public static final int access$packBytes()
+    public abstract androidx.compose.ui.modifier.ModifierLocalModifierNodeKt add()
     public static final int addMaxWithMinimum(int,int)
+    public static void closeQuietly(java.io.Closeable)
+    public abstract int commit()
+    public abstract int commitAllowingStateLoss()
     public static final int constrainHeight-K40F9xA(int,long)
     public static final int constrainWidth-K40F9xA(int,long)
+    public static boolean copyToFile(java.io.File,java.io.InputStream)
     public static final void findParagraphsByRange-Sb-Bc2M(java.util.ArrayList,long,kotlin.jvm.functions.Function1)
     public static androidx.compose.ui.platform.coreshims.AutofillIdCompat getAutofillId(android.view.View)
     public abstract java.lang.String getPrivateImeOptions()
@@ -31704,18 +31798,12 @@ androidx.compose.ui.modifier.ModifierLocalModifierNodeKt:
     public static final int lineHeight(android.graphics.Paint$FontMetricsInt)
     public abstract androidx.compose.ui.modifier.ModifierLocalModifierNodeKt merge()
     public static final androidx.compose.ui.modifier.ModifierLocalMap modifierLocalMapOf()
-    public static java.lang.String readString(java.io.ByteArrayInputStream,int)
-    public static void readUInt16(java.io.ByteArrayInputStream)
-    public static void readUInt8(java.io.ByteArrayInputStream)
+    public abstract androidx.compose.ui.modifier.ModifierLocalModifierNodeKt remove()
+    public static final void set(android.view.View,androidx.lifecycle.ViewModelStoreOwner)
     public static final void setBackground-RPmYEkk(android.text.Spannable,long,int,int)
     public static final void setColor-RPmYEkk(android.text.Spannable,long,int,int)
     public static final android.graphics.Typeface setFontVariationSettings()
     public static final void setLocaleList(android.text.Spannable,androidx.compose.ui.text.intl.LocaleList,int,int)
-    public abstract android.content.LocusId toLocusId()
-    public static int utf8Length(java.lang.String)
-    public static void writeCompressed(java.io.ByteArrayOutputStream,byte[])
-    public static void writeString(java.io.ByteArrayOutputStream,java.lang.String)
-    public static void writeUInt8(java.io.ByteArrayOutputStream,int)
 androidx.compose.ui.modifier.ModifierLocalProvider:
     public abstract androidx.compose.ui.modifier.ProvidableModifierLocal getKey()
     public abstract java.lang.Object getValue()
@@ -31907,7 +31995,7 @@ androidx.compose.ui.node.LayerPositionalProperties:
     public static void copyFrom()
     public static void copyFrom$1()
     public static boolean hasSameValuesAs()
-androidx.compose.ui.node.LayoutModifierNodeCoordinator$$InternalSyntheticThrowCCEIfNotNull$203$03a6d961604b374ac0910d8983169a94be5d99ff45e5f28c8ed4f17fe6443148$0
+androidx.compose.ui.node.LayoutModifierNodeCoordinator$$InternalSyntheticThrowCCEIfNotNull$204$03a6d961604b374ac0910d8983169a94be5d99ff45e5f28c8ed4f17fe6443148$0
 androidx.compose.ui.node.LayoutModifierNodeCoordinator$Companion
 androidx.compose.ui.node.LayoutModifierNodeCoordinator$LookaheadDelegateForLayoutModifierNode
 androidx.compose.ui.node.LayoutModifierNodeCoordinator:
@@ -32889,7 +32977,7 @@ androidx.compose.ui.platform.DisposableSaveableStateRegistry_androidKt$Disposabl
 androidx.compose.ui.platform.DisposableSaveableStateRegistry_androidKt$DisposableSaveableStateRegistry$saveableStateRegistry$1
 androidx.compose.ui.platform.DragAndDropModifierOnDragListener$modifier$1:
     public static androidx.compose.ui.draganddrop.DragAndDropNode create()
-    public static void update$23()
+    public static void update$24()
 androidx.compose.ui.platform.DragAndDropModifierOnDragListener$rootDragAndDropNode$1
 androidx.compose.ui.platform.DragAndDropModifierOnDragListener:
     public final kotlin.jvm.functions.Function3 startDrag
@@ -32926,7 +33014,7 @@ androidx.compose.ui.platform.LayerMatrixCache:
     static void <clinit>()
 androidx.compose.ui.platform.MotionDurationScaleImpl:
     public final void setScaleFactor(float)
-androidx.compose.ui.platform.OutlineResolver$$InternalSyntheticThrowCCEIfNotNull$68$8dc5078d4b9026ee56b02e4f86bfd93df439138131b13404fc6c76a2c26f53d0$0
+androidx.compose.ui.platform.OutlineResolver$$InternalSyntheticThrowCCEIfNotNull$72$8dc5078d4b9026ee56b02e4f86bfd93df439138131b13404fc6c76a2c26f53d0$0
 androidx.compose.ui.platform.OutlineResolver:
     public static final int $stable
     public androidx.compose.ui.graphics.Path tmpOpPath
@@ -33133,7 +33221,7 @@ androidx.compose.ui.semantics.AppendedSemanticsElement:
     static void <clinit>()
     public static androidx.compose.ui.semantics.CoreSemanticsModifierNode create()
     public final androidx.compose.ui.semantics.SemanticsConfiguration getSemanticsConfiguration()
-    public static void update$24()
+    public static void update$25()
 androidx.compose.ui.semantics.CollectionInfo:
     static void <clinit>()
     public static int getColumnCount()
@@ -33147,7 +33235,7 @@ androidx.compose.ui.semantics.CoreSemanticsModifierNode:
 androidx.compose.ui.semantics.CustomAccessibilityAction
 androidx.compose.ui.semantics.EmptySemanticsElement:
     public static androidx.compose.ui.semantics.EmptySemanticsModifier create()
-    public static void update$25()
+    public static void update$26()
 androidx.compose.ui.semantics.EmptySemanticsModifier:
     static void <clinit>()
 androidx.compose.ui.semantics.LiveRegionMode$Companion
@@ -33949,9 +34037,9 @@ androidx.compose.ui.text.font.AndroidFontResolveInterceptor:
     static void <clinit>()
 androidx.compose.ui.text.font.AndroidFontResolveInterceptor_androidKt
 androidx.compose.ui.text.font.AndroidFontUtils_androidKt
-androidx.compose.ui.text.font.AsyncFontListLoader$$InternalSyntheticThrowCCEIfNotNull$125$f316b05f9996028cd39f9c39e9b721b97eee2a3d1d9afc12471b3d865057f225$0
-androidx.compose.ui.text.font.AsyncFontListLoader$$InternalSyntheticThrowCCEIfNotNull$125$f316b05f9996028cd39f9c39e9b721b97eee2a3d1d9afc12471b3d865057f225$1
-androidx.compose.ui.text.font.AsyncFontListLoader$$InternalSyntheticThrowCCEIfNotNull$140$cc4e108c24fe962fab6864452822ad9b53eb9e043d858356aa3a8cb47ed836b7$0
+androidx.compose.ui.text.font.AsyncFontListLoader$$InternalSyntheticThrowCCEIfNotNull$126$f316b05f9996028cd39f9c39e9b721b97eee2a3d1d9afc12471b3d865057f225$0
+androidx.compose.ui.text.font.AsyncFontListLoader$$InternalSyntheticThrowCCEIfNotNull$126$f316b05f9996028cd39f9c39e9b721b97eee2a3d1d9afc12471b3d865057f225$1
+androidx.compose.ui.text.font.AsyncFontListLoader$$InternalSyntheticThrowCCEIfNotNull$141$cc4e108c24fe962fab6864452822ad9b53eb9e043d858356aa3a8cb47ed836b7$0
 androidx.compose.ui.text.font.AsyncFontListLoader$load$1
 androidx.compose.ui.text.font.AsyncFontListLoader$load$2$typeface$1
 androidx.compose.ui.text.font.AsyncFontListLoader$loadWithTimeoutOrNull$1
@@ -33992,9 +34080,10 @@ androidx.compose.ui.text.font.FontFamilyResolverImpl:
     public final androidx.collection.ScatterSet$toString$1 createDefaultTypeface
     static void <clinit>()
     public static androidx.compose.ui.text.font.PlatformFontLoader getPlatformFontLoader$ui_text_release()
+    public final androidx.compose.ui.text.font.TypefaceResult resolve-DPcqOEQ(androidx.compose.ui.text.font.FontFamily,androidx.compose.ui.text.font.FontWeight,int,int)
 androidx.compose.ui.text.font.FontFamilyResolver_androidKt
 androidx.compose.ui.text.font.FontListFontFamily
-androidx.compose.ui.text.font.FontListFontFamilyTypefaceAdapter$$InternalSyntheticThrowCCEIfNotNull$144$19f4cf09b7e8ecab7079dcbaa8d9a5c48b256e5ab829da46a910906b05b06fc0$0
+androidx.compose.ui.text.font.FontListFontFamilyTypefaceAdapter$$InternalSyntheticThrowCCEIfNotNull$145$19f4cf09b7e8ecab7079dcbaa8d9a5c48b256e5ab829da46a910906b05b06fc0$0
 androidx.compose.ui.text.font.FontListFontFamilyTypefaceAdapter$Companion
 androidx.compose.ui.text.font.FontListFontFamilyTypefaceAdapter$resolve$1
 androidx.compose.ui.text.font.FontListFontFamilyTypefaceAdapter:
@@ -34268,8 +34357,7 @@ androidx.compose.ui.text.platform.AndroidAccessibilitySpannableString_androidKt
 androidx.compose.ui.text.platform.AndroidMultiParagraphDraw_androidKt
 androidx.compose.ui.text.platform.AndroidParagraphHelper_androidKt:
     public static final boolean isIncludeFontPaddingEnabled(androidx.compose.ui.text.TextStyle)
-androidx.compose.ui.text.platform.AndroidParagraphIntrinsics$resolveTypeface$1:
-    public static android.graphics.Typeface invoke-DPcqOEQ()
+androidx.compose.ui.text.platform.AndroidParagraphIntrinsics$resolveTypeface$1
 androidx.compose.ui.text.platform.AndroidParagraphIntrinsics:
     public static final int $stable
     static void <clinit>()
@@ -34566,7 +34654,6 @@ androidx.compose.ui.unit.Constraints$Companion
 androidx.compose.ui.unit.Constraints:
     public static final androidx.compose.ui.text.style.BaselineShift$Companion Companion
     public static final synthetic int[] access$getMinHeightOffsets$cp()
-    public static final boolean getHasBoundedWidth-impl(long)
     public static final boolean getHasFixedHeight-impl(long)
     public static final boolean getHasFixedWidth-impl(long)
     public static synthetic long unbox-impl()
@@ -34648,11 +34735,11 @@ androidx.compose.ui.unit.fontscaling.FontScaleConverterTable:
     public static final androidx.compose.ui.text.style.BaselineShift$Companion Companion
 androidx.compose.ui.unit.fontscaling.MathUtils
 androidx.compose.ui.util.ListUtilsKt
+androidx.compose.ui.util.MathHelpersKt
 androidx.compose.ui.viewinterop.AndroidViewHolder
 androidx.concurrent.futures.AbstractResolvableFuture$$InternalSyntheticThrowCCEIfNotNull$23$5468c06d8017681e6113cc82283d8dd430c2c54f59efafb379e08cf867058ebd$0
 androidx.concurrent.futures.AbstractResolvableFuture$$InternalSyntheticThrowCCEIfNotNull$9$55dea8fb21d2d9b463eef9ac6e0028a5ce984ce53c3e30d133ce76e755bdaf0a$0
 androidx.concurrent.futures.AbstractResolvableFuture$1
-androidx.concurrent.futures.AbstractResolvableFuture$AtomicHelper
 androidx.concurrent.futures.AbstractResolvableFuture$Cancellation:
     public final boolean wasInterrupted
 androidx.concurrent.futures.AbstractResolvableFuture$Failure$1
@@ -34747,7 +34834,7 @@ androidx.core.app.NotificationCompat$Builder:
     public boolean mGroupSummary
     public android.widget.RemoteViews mHeadsUpContentView
     public androidx.core.graphics.drawable.IconCompat mLargeIcon
-    public androidx.compose.ui.modifier.ModifierLocalModifierNodeKt mLocusId
+    public androidx.compose.ui.input.pointer.PointerIconKt mLocusId
     public int mNumber
     public int mProgress
     public boolean mProgressIndeterminate
@@ -34871,7 +34958,7 @@ androidx.core.os.LocaleListCompat:
     public static java.util.Locale get()
     public static java.lang.Object unwrap()
     public static androidx.core.os.LocaleListCompat wrap(android.os.LocaleList)
-androidx.core.os.LocaleListCompatWrapper$$InternalSyntheticThrowCCEIfNotNull$231$eabde584e09f5dbef5e5c77b987ffae1119ec566c4556bde1e78e256d6ae9d7b$0
+androidx.core.os.LocaleListCompatWrapper$$InternalSyntheticThrowCCEIfNotNull$233$eabde584e09f5dbef5e5c77b987ffae1119ec566c4556bde1e78e256d6ae9d7b$0
 androidx.core.os.LocaleListCompatWrapper
 androidx.core.os.LocaleListInterface
 androidx.core.os.LocaleListPlatformWrapper:
@@ -35242,20 +35329,25 @@ androidx.emoji2.text.EmojiProcessor:
     public static void initExclusions()
     public static java.lang.CharSequence process()
 androidx.emoji2.text.EmojiSpan
-androidx.emoji2.text.FontRequestEmojiCompatConfig$FontProviderHelper$$InternalSyntheticThrowCCEIfNotNull$183$45790c75780cd5bc9a761c96325cca2e40768b45bcb09e421ee1da29cc6e59c3$0
+androidx.emoji2.text.FontRequestEmojiCompatConfig$FontProviderHelper$$InternalSyntheticThrowCCEIfNotNull$184$45790c75780cd5bc9a761c96325cca2e40768b45bcb09e421ee1da29cc6e59c3$0
 androidx.emoji2.text.FontRequestEmojiCompatConfig$FontProviderHelper:
     public synthetic void <init>(int,int)
     public static android.graphics.Typeface buildTypeface()
     public static androidx.savedstate.SavedStateRegistryController create()
     public static androidx.compose.ui.node.IntStack fetchFonts()
-    public static kotlin.ranges.IntProgression fromClosedRange()
     public static androidx.lifecycle.LifecycleOwner get()
     public static androidx.lifecycle.ReportFragment get()
-    public static java.lang.String getClassSimpleName()
-    public static kotlin.ranges.IntRange getEMPTY()
+    public static float getCenter-BjYtHoc()
+    public static float getCenter-IUldqTk()
+    public static int getClockwise-gmlPZk4()
+    public static int getCounterClockwise-gmlPZk4()
     public static java.lang.Exception getException()
+    public static int getInsideOut-Ysh6JRM()
     public static androidx.lifecycle.ViewModelProvider$AndroidViewModelFactory getInstance()
     public static androidx.lifecycle.ViewModelProvider$NewInstanceFactory getInstance()
+    public static int getNormal-gmlPZk4()
+    public static int getOutsideIn-Ysh6JRM()
+    public static int getReversed-gmlPZk4()
     public static void init$lifecycle_process_release()
     public boolean isPrecomputedText()
     public static androidx.lifecycle.Lifecycle$State min$lifecycle_runtime_release(androidx.lifecycle.Lifecycle$State,androidx.lifecycle.Lifecycle$State)
@@ -35548,13 +35640,64 @@ androidx.lifecycle.ViewTreeLifecycleOwner:
     public static void terminateCollectionToArray(int,java.lang.Object[])
     public static void throwIndexOverflow()
     public static androidx.compose.ui.platform.coreshims.ContentCaptureSessionCompat toStringHelper(java.lang.Object)
-    public static final java.lang.Object yield(androidx.compose.ui.text.font.AsyncFontListLoader$load$1)
     public abstract boolean zab()
     public static int zza(int)
-androidx.lifecycle.ViewTreeViewModelStoreOwner$$InternalSyntheticThrowCCEIfNotNull$15$ef03389fb5cf73e560a2fe60ad4fef2efea8524ceff193cbe013c253f06ed794$0
 androidx.lifecycle.ViewTreeViewModelStoreOwner$findViewTreeViewModelStoreOwner$1
 androidx.lifecycle.ViewTreeViewModelStoreOwner$findViewTreeViewModelStoreOwner$2
-androidx.lifecycle.ViewTreeViewModelStoreOwner:
+androidx.lifecycle.ViewTreeViewModelStoreOwner
+androidx.lifecycle.runtime.R$id
+androidx.lifecycle.viewmodel.CreationExtras$Empty:
+    public final java.lang.Object get(androidx.lifecycle.viewmodel.CreationExtras$Key)
+androidx.lifecycle.viewmodel.CreationExtras$Key
+androidx.lifecycle.viewmodel.CreationExtras:
+    public abstract java.lang.Object get(androidx.lifecycle.viewmodel.CreationExtras$Key)
+    public abstract java.util.Map getMap$lifecycle_viewmodel_release()
+androidx.lifecycle.viewmodel.MutableCreationExtras:
+    public final java.lang.Object get(androidx.lifecycle.viewmodel.CreationExtras$Key)
+    public final void set(androidx.lifecycle.viewmodel.CreationExtras$Key,java.lang.Object)
+androidx.lifecycle.viewmodel.R$id
+androidx.profileinstaller.BenchmarkOperation$$InternalSyntheticThrowCCEIfNotNull$15$e92c51689f6dc51521c21dc30878064aac56fd80a4d88fd08c9990ab72dbce34$0
+androidx.profileinstaller.BenchmarkOperation$Api21ContextHelper$$InternalSyntheticThrowCCEIfNotNull$29$3c7b5fc11009935169f6348c63a55650c5cfe8d1f3c6886b8e93bdbab22bc289$0
+androidx.profileinstaller.BenchmarkOperation$Api21ContextHelper$$InternalSyntheticThrowCCEIfNotNull$31$61278a2f9456ec61a8e2b8c9fa47a8575df8a1a8d07782859c1e11670e384a13$0
+androidx.profileinstaller.BenchmarkOperation$Api21ContextHelper:
+    public static kotlinx.coroutines.JobImpl Job$default()
+    public static void cancel$default(kotlinx.coroutines.Job,java.lang.String)
+    public static final int differenceModulo(int,int,int)
+    public static final long differenceModulo(long,long,long)
+    public static final long durationOfMillis(long)
+    public static final java.util.Set emptySet()
+    public static final void ensureActive(kotlinx.coroutines.Job)
+    public static java.lang.Object fold(kotlin.coroutines.CoroutineContext$Element,java.lang.Object,kotlin.jvm.functions.Function2)
+    public static final java.lang.String getCoroutineName()
+    public static final boolean hasCopyableElements(kotlin.coroutines.CoroutineContext)
+    public static boolean isAtLeastJellyBean()
+    public static boolean isAtLeastJellyBeanMR2()
+    public static boolean isAtLeastKitKatWatch()
+    public static boolean isAtLeastLollipop()
+    public static boolean isAtLeastN()
+    public static boolean isAtLeastO()
+    public static boolean isAtLeastQ()
+    public static boolean isAtLeastR()
+    public static boolean isMutableMapEntry(java.lang.Object)
+    public static boolean isMutableSet(java.lang.Object)
+    public static final androidx.compose.runtime.collection.IdentityArraySet$iterator$1 iterator(java.lang.Object[])
+    public static final kotlinx.coroutines.StandaloneCoroutine launch(kotlinx.coroutines.CoroutineScope,kotlin.coroutines.CoroutineContext,int,kotlin.jvm.functions.Function2)
+    public static final int mod(int,int)
+    public static final long mod(long,long)
+    public static final kotlin.coroutines.CoroutineContext newCoroutineContext(kotlinx.coroutines.CoroutineScope,kotlin.coroutines.CoroutineContext)
+    public static java.lang.String readString(java.io.ByteArrayInputStream,int)
+    public static void readUInt16(java.io.ByteArrayInputStream)
+    public static void readUInt8(java.io.ByteArrayInputStream)
+    public static kotlin.sequences.SequencesKt__SequenceBuilderKt$sequence$$inlined$Sequence$1 sequence(kotlin.jvm.functions.Function2)
+    public static final java.util.Set setOf(java.lang.Object)
+    public static final java.lang.Object setupTimeout(kotlinx.coroutines.TimeoutCoroutine,androidx.compose.ui.text.font.AsyncFontListLoader$loadWithTimeoutOrNull$2)
+    public static int utf8Length(java.lang.String)
+    public static final java.lang.Object withTimeoutOrNull(long,androidx.compose.ui.text.font.AsyncFontListLoader$loadWithTimeoutOrNull$2,kotlin.coroutines.Continuation)
+    public static void writeCompressed(java.io.ByteArrayOutputStream,byte[])
+    public static void writeString(java.io.ByteArrayOutputStream,java.lang.String)
+    public static void writeUInt8(java.io.ByteArrayOutputStream,int)
+androidx.profileinstaller.BenchmarkOperation$Api24ContextHelper
+androidx.profileinstaller.BenchmarkOperation:
     public static synthetic void cancel$default(kotlinx.coroutines.Job)
     public static void checkArgument(boolean)
     public static void checkNotEmpty(java.lang.String)
@@ -35572,7 +35715,6 @@ androidx.lifecycle.ViewTreeViewModelStoreOwner:
     public abstract void parkNanos()
     public static kotlin.coroutines.CoroutineContext plus(kotlin.coroutines.CoroutineContext,kotlin.coroutines.CoroutineContext)
     public abstract void registerTimeLoopThread()
-    public static final void set(android.view.View,androidx.lifecycle.ViewModelStoreOwner)
     public static final java.lang.Object toState(java.lang.Object,kotlin.jvm.functions.Function1)
     public static java.lang.Object toState$default(java.lang.Object)
     public abstract void trackTask()
@@ -35584,20 +35726,6 @@ androidx.lifecycle.ViewTreeViewModelStoreOwner:
     public static void writeIBinder(android.os.Parcel,int,android.os.IBinder)
     public static void writeIntArray(android.os.Parcel,int,int[])
     public static void zzd(android.os.Parcel,android.os.Parcelable,int)
-androidx.lifecycle.runtime.R$id
-androidx.lifecycle.viewmodel.CreationExtras$Empty:
-    public final java.lang.Object get(androidx.lifecycle.viewmodel.CreationExtras$Key)
-androidx.lifecycle.viewmodel.CreationExtras$Key
-androidx.lifecycle.viewmodel.CreationExtras:
-    public abstract java.lang.Object get(androidx.lifecycle.viewmodel.CreationExtras$Key)
-    public abstract java.util.Map getMap$lifecycle_viewmodel_release()
-androidx.lifecycle.viewmodel.MutableCreationExtras:
-    public final java.lang.Object get(androidx.lifecycle.viewmodel.CreationExtras$Key)
-    public final void set(androidx.lifecycle.viewmodel.CreationExtras$Key,java.lang.Object)
-androidx.lifecycle.viewmodel.R$id
-androidx.profileinstaller.BenchmarkOperation$Api21ContextHelper
-androidx.profileinstaller.BenchmarkOperation$Api24ContextHelper
-androidx.profileinstaller.BenchmarkOperation
 androidx.profileinstaller.DeviceProfileWriter:
     public final android.content.res.AssetManager mAssetManager
     public final java.lang.String mProfileMetaSourceLocation
@@ -35695,38 +35823,7 @@ androidx.startup.AppInitializer:
     public static boolean isEagerlyInitialized()
 androidx.startup.R$string
 androidx.startup.StartupLogger
-androidx.tracing.Trace$$InternalSyntheticThrowCCEIfNotNull$29$c5d6bcb75ad4e310b267134befbda6a167d29b9f47df159bc0e8cbff7981fd87$0
-androidx.tracing.Trace$$InternalSyntheticThrowCCEIfNotNull$31$c6277c3459d3a28384f714677037e3a67288b0224a10d6707732f8a0114382d6$0
-androidx.tracing.Trace:
-    public static kotlinx.coroutines.JobImpl Job$default()
-    public static void cancel$default(kotlinx.coroutines.Job,java.lang.String)
-    public static final int differenceModulo(int,int,int)
-    public static final long differenceModulo(long,long,long)
-    public static final long durationOfMillis(long)
-    public static final java.util.Set emptySet()
-    public static final void ensureActive(kotlinx.coroutines.Job)
-    public static java.lang.Object fold(kotlin.coroutines.CoroutineContext$Element,java.lang.Object,kotlin.jvm.functions.Function2)
-    public static final java.lang.String getCoroutineName()
-    public static final boolean hasCopyableElements(kotlin.coroutines.CoroutineContext)
-    public static boolean isAtLeastJellyBean()
-    public static boolean isAtLeastJellyBeanMR2()
-    public static boolean isAtLeastKitKatWatch()
-    public static boolean isAtLeastLollipop()
-    public static boolean isAtLeastN()
-    public static boolean isAtLeastO()
-    public static boolean isAtLeastQ()
-    public static boolean isAtLeastR()
-    public static boolean isMutableMapEntry(java.lang.Object)
-    public static boolean isMutableSet(java.lang.Object)
-    public static final androidx.compose.runtime.collection.IdentityArraySet$iterator$1 iterator(java.lang.Object[])
-    public static final kotlinx.coroutines.StandaloneCoroutine launch(kotlinx.coroutines.CoroutineScope,kotlin.coroutines.CoroutineContext,int,kotlin.jvm.functions.Function2)
-    public static final int mod(int,int)
-    public static final long mod(long,long)
-    public static final kotlin.coroutines.CoroutineContext newCoroutineContext(kotlinx.coroutines.CoroutineScope,kotlin.coroutines.CoroutineContext)
-    public static kotlin.sequences.SequencesKt__SequenceBuilderKt$sequence$$inlined$Sequence$1 sequence(kotlin.jvm.functions.Function2)
-    public static final java.util.Set setOf(java.lang.Object)
-    public static final java.lang.Object setupTimeout(kotlinx.coroutines.TimeoutCoroutine,androidx.compose.ui.text.font.AsyncFontListLoader$loadWithTimeoutOrNull$2)
-    public static final java.lang.Object withTimeoutOrNull(long,androidx.compose.ui.text.font.AsyncFontListLoader$loadWithTimeoutOrNull$2,kotlin.coroutines.Continuation)
+androidx.tracing.Trace
 androidx.tracing.TraceApi18Impl
 androidx.versionedparcelable.ParcelImpl$1
 androidx.versionedparcelable.VersionedParcel:
@@ -35775,6 +35872,100 @@ androidx.versionedparcelable.VersionedParcelParcel:
     public final void writeInt(int)
     public final void writeParcelable()
     public final void writeString(java.lang.String)
+androidx.wear.compose.foundation.AnchorType$Companion
+androidx.wear.compose.foundation.AnchorType
+androidx.wear.compose.foundation.ContainerChild$SubComposition$2
+androidx.wear.compose.foundation.ContainerChild:
+    public static final int $stable
+    static void <clinit>()
+    public abstract java.util.List getChildren$compose_foundation_release()
+androidx.wear.compose.foundation.CurvedAlignment$Radial$Companion
+androidx.wear.compose.foundation.CurvedAlignment$Radial
+androidx.wear.compose.foundation.CurvedChild:
+    public static final int $stable
+    static void <clinit>()
+    public abstract java.lang.Object computeParentData()
+    public abstract float getEstimatedThickness$compose_foundation_release()
+    public abstract androidx.wear.compose.foundation.CurvedLayoutInfo getLayoutInfo$compose_foundation_release()
+    public final void radialPosition(float,float)
+    public abstract void setLayoutInfo()
+androidx.wear.compose.foundation.CurvedComposableChild$SubComposition$1
+androidx.wear.compose.foundation.CurvedComposableChild:
+    public static final int $stable
+    static void <clinit>()
+    public static void setPlaceable()
+androidx.wear.compose.foundation.CurvedComposableKt$place$1$1
+androidx.wear.compose.foundation.CurvedComposableKt
+androidx.wear.compose.foundation.CurvedDirection$Angular$Companion
+androidx.wear.compose.foundation.CurvedDirection$Angular:
+    public static final int Clockwise
+    public static final androidx.emoji2.text.FontRequestEmojiCompatConfig$FontProviderHelper Companion
+    public static final int CounterClockwise
+    public static final int Normal
+    public static final int Reversed
+    static void <clinit>()
+    public static final synthetic int access$getClockwise$cp()
+    public static final synthetic int access$getCounterClockwise$cp()
+    public static final synthetic int access$getNormal$cp()
+    public static final synthetic int access$getReversed$cp()
+androidx.wear.compose.foundation.CurvedDirection$Radial$Companion
+androidx.wear.compose.foundation.CurvedDirection$Radial:
+    public static final androidx.emoji2.text.FontRequestEmojiCompatConfig$FontProviderHelper Companion
+    public static final int InsideOut
+    public static final int OutsideIn
+    static void <clinit>()
+    public static final synthetic int access$getInsideOut$cp()
+    public static final synthetic int access$getOutsideIn$cp()
+androidx.wear.compose.foundation.CurvedLayoutDirection:
+    static void <clinit>()
+    public static boolean absoluteClockwise()
+androidx.wear.compose.foundation.CurvedLayoutInfo:
+    public final float innerRadius
+    public final float measureRadius
+    public final float sweepRadians
+    public final float thickness
+    static void <clinit>()
+    public static long getCenterOffset-F1C5BW0()
+    public static float getOuterRadius()
+    public static float getStartAngleRadians()
+androidx.wear.compose.foundation.CurvedLayoutKt$CurvedLayout$1$1:
+    public final void invoke(androidx.compose.ui.layout.Placeable$PlacementScope)
+    public static void invoke$33()
+androidx.wear.compose.foundation.CurvedLayoutKt$CurvedLayout$2$1$3
+androidx.wear.compose.foundation.CurvedLayoutKt$CurvedLayout$4:
+    public final synthetic androidx.wear.compose.foundation.CurvedAlignment$Radial $radialAlignment
+    public final void invoke(androidx.compose.runtime.Composer,int)
+androidx.wear.compose.foundation.CurvedLayoutKt
+androidx.wear.compose.foundation.CurvedMeasureScope:
+    public final androidx.wear.compose.foundation.CurvedLayoutDirection curvedLayoutDirection
+    static void <clinit>()
+    public static float getRadius()
+androidx.wear.compose.foundation.CurvedModifier:
+    public static final androidx.wear.compose.foundation.CurvedModifier$Companion Companion
+    static void <clinit>()
+androidx.wear.compose.foundation.CurvedModifierImpl
+androidx.wear.compose.foundation.CurvedModifierKt
+androidx.wear.compose.foundation.CurvedRowChild$doRadialPosition$totalSweep$1:
+    public static java.lang.Float invoke$4()
+androidx.wear.compose.foundation.CurvedRowChild:
+    public final androidx.wear.compose.foundation.CurvedAlignment$Radial radialAlignment
+    static void <clinit>()
+    public static void getRadialAlignment-xcdaxW0()
+androidx.wear.compose.foundation.CurvedScope:
+    public static final int $stable
+    static void <clinit>()
+    public static void add$compose_foundation_release()
+    public static androidx.wear.compose.foundation.CurvedLayoutDirection getCurvedLayoutDirection$compose_foundation_release()
+    public static java.util.List getNodes$compose_foundation_release()
+androidx.wear.compose.foundation.CurvedScopeParentData
+androidx.wear.compose.foundation.Element
+androidx.wear.compose.foundation.PartialLayoutInfo:
+    public final float measureRadius
+    static void <clinit>()
+    public static float getMeasureRadius()
+    public static float getOuterRadius()
+    public static float getSweepRadians()
+    public static float getThickness()
 androidx.wear.compose.material.ContentAlphaKt$LocalContentAlpha$1:
     public static final androidx.wear.compose.material.ContentAlphaKt$LocalContentAlpha$1 INSTANCE$3
     public static androidx.compose.ui.text.TextStyle invoke()
@@ -35785,11 +35976,11 @@ androidx.wear.compose.material.ContentAlphaKt$LocalContentAlpha$1:
 androidx.wear.compose.material.ContentColorKt$LocalContentColor$1
 androidx.wear.compose.material.TextKt$LocalTextStyle$1
 androidx.wear.compose.material.TextKt$Text$1:
-    public final void invoke$33()
+    public final void invoke$34()
 androidx.wear.compose.material.TextKt$Text$2:
     public final void invoke(androidx.compose.runtime.Composer,int)
 androidx.wear.compose.material.TextKt$Text$5:
-    public final void invoke$33()
+    public final void invoke$34()
 androidx.wear.compose.material.TextKt$Text$6:
     public final void invoke(androidx.compose.runtime.Composer,int)
 androidx.wear.compose.material.Typography:
@@ -36741,7 +36932,7 @@ kotlin.jvm.internal.CallableReference:
     public abstract java.lang.String getSignature()
 kotlin.jvm.internal.ClassReference$Companion
 kotlin.jvm.internal.ClassReference:
-    public static final androidx.emoji2.text.FontRequestEmojiCompatConfig$FontProviderHelper Companion
+    public static final kotlin.jvm.internal.ClassReference$Companion Companion
     public static final java.util.HashMap classFqNames
     public static final java.util.HashMap primitiveFqNames
     public static final java.util.HashMap primitiveWrapperFqNames
@@ -36818,7 +37009,7 @@ kotlin.ranges.ClosedFloatingPointRange
 kotlin.ranges.ClosedRange
 kotlin.ranges.IntProgression$Companion
 kotlin.ranges.IntProgression:
-    public static final androidx.emoji2.text.FontRequestEmojiCompatConfig$FontProviderHelper Companion
+    public static final kotlin.jvm.internal.ClassReference$Companion Companion
     static void <clinit>()
     public static int getFirst()
     public static int getLast()
@@ -36826,7 +37017,7 @@ kotlin.ranges.IntProgression:
     public final kotlin.ranges.IntProgressionIterator iterator()
 kotlin.ranges.IntRange$Companion
 kotlin.ranges.IntRange:
-    public static final androidx.emoji2.text.FontRequestEmojiCompatConfig$FontProviderHelper Companion
+    public static final kotlin.jvm.internal.ClassReference$Companion Companion
     public static boolean contains$7()
     public static java.lang.Integer getEndInclusive()
     public static java.lang.Integer getStart()
@@ -36981,7 +37172,7 @@ kotlinx.coroutines.CoroutineExceptionHandler:
     public static final kotlinx.coroutines.CoroutineExceptionHandler$Key Key
     static void <clinit>()
 kotlinx.coroutines.CoroutineExceptionHandlerKt
-kotlinx.coroutines.CoroutineId$$InternalSyntheticThrowCCEIfNotNull$231$a7d8b984f14ef6811fc36f0d030a1c8a7f27075d192601697212118d266ca07a$0
+kotlinx.coroutines.CoroutineId$$InternalSyntheticThrowCCEIfNotNull$233$a7d8b984f14ef6811fc36f0d030a1c8a7f27075d192601697212118d266ca07a$0
 kotlinx.coroutines.CoroutineId$$InternalSyntheticThrowCCEIfNotNull$29$db4fcf294f73e0414b61d779f72a560fad56831e560e6b71def36fecaf64a8d1$0
 kotlinx.coroutines.CoroutineId
 kotlinx.coroutines.CoroutineName$Key
@@ -37210,7 +37401,15 @@ kotlinx.coroutines.Unconfined:
 kotlinx.coroutines.YieldContext$Key
 kotlinx.coroutines.YieldContext:
     public boolean dispatcherWasUnconfined
-kotlinx.coroutines.YieldKt
+kotlinx.coroutines.YieldKt:
+    public static final void checkParallelism(int)
+    public static final void dispatcherFailure(kotlin.coroutines.Continuation,java.lang.Throwable)
+    public static final int systemProp(int,int,int,java.lang.String)
+    public static final java.lang.String systemProp(java.lang.String)
+    public static final boolean systemProp(java.lang.String,boolean)
+    public static synthetic long systemProp$default(java.lang.String,long)
+    public static final kotlinx.coroutines.flow.internal.ChannelFlowTransformLatest transformLatest(kotlinx.coroutines.flow.Flow,kotlin.jvm.functions.Function3)
+    public static final java.lang.Object yield(androidx.compose.ui.text.font.AsyncFontListLoader$load$1)
 kotlinx.coroutines.android.AndroidExceptionPreHandler:
     public static java.lang.reflect.Method preHandler()
 kotlinx.coroutines.android.HandlerContext$$InternalSyntheticLambda$1$99e38a445a3be818c4af1b1deca58bd7da8a28251e13591b0b9d2fae0d59f617$0
@@ -37315,7 +37514,7 @@ kotlinx.coroutines.channels.ChannelIterator
 kotlinx.coroutines.channels.ChannelKt
 kotlinx.coroutines.channels.ChannelResult$Companion
 kotlinx.coroutines.channels.ChannelResult:
-    public static final kotlin.ranges.LongRange$Companion Companion
+    public static final kotlin.jvm.internal.ClassReference$Companion Companion
     public final java.lang.Object holder
     public static final synthetic kotlinx.coroutines.channels.ChannelResult$Failed access$getFailed$cp()
     public final boolean equals(java.lang.Object)
@@ -37330,15 +37529,12 @@ kotlinx.coroutines.channels.ChannelSegment:
     public final java.lang.Object getElement$kotlinx_coroutines_core(int)
     public final java.lang.Object retrieveElement$kotlinx_coroutines_core(int)
     public static void storeElement$kotlinx_coroutines_core()
-kotlinx.coroutines.channels.ChannelsKt
-kotlinx.coroutines.channels.ChannelsKt__Channels_commonKt:
-    public static final void checkParallelism(int)
-    public static final void dispatcherFailure(kotlin.coroutines.Continuation,java.lang.Throwable)
-    public static final int systemProp(int,int,int,java.lang.String)
-    public static final java.lang.String systemProp(java.lang.String)
-    public static final boolean systemProp(java.lang.String,boolean)
-    public static synthetic long systemProp$default(java.lang.String,long)
-    public static final kotlinx.coroutines.flow.internal.ChannelFlowTransformLatest transformLatest(kotlinx.coroutines.flow.Flow,kotlin.jvm.functions.Function3)
+kotlinx.coroutines.channels.ChannelsKt$$InternalSyntheticThrowCCEIfNotNull$7$90929e05b4351f02e817c7df1bd85d9b353d3eb7978409d0e1a42e0a53946abe$0
+kotlinx.coroutines.channels.ChannelsKt:
+    public static java.lang.Object constructor-impl$default()
+    public static synthetic java.lang.Object lock$default(kotlinx.coroutines.sync.MutexImpl,kotlin.coroutines.jvm.internal.ContinuationImpl)
+    public static synthetic void unlock$default(kotlinx.coroutines.sync.MutexImpl)
+kotlinx.coroutines.channels.ChannelsKt__Channels_commonKt
 kotlinx.coroutines.channels.ClosedSendChannelException
 kotlinx.coroutines.channels.ConflatedBufferedChannel:
     public final int capacity
@@ -37375,11 +37571,7 @@ kotlinx.coroutines.flow.FlowKt__ContextKt
 kotlinx.coroutines.flow.FlowKt__DistinctKt$defaultAreEquivalent$1:
     public static java.lang.Boolean invoke$12()
 kotlinx.coroutines.flow.FlowKt__DistinctKt
-kotlinx.coroutines.flow.FlowKt__EmittersKt$$InternalSyntheticThrowCCEIfNotNull$7$e725080ea2baf136ff3783a601e7cc03c4c9f6d9080b74e99a4753b5bc3a90b1$0
-kotlinx.coroutines.flow.FlowKt__EmittersKt:
-    public static java.lang.Object constructor-impl$default()
-    public static synthetic java.lang.Object lock$default(kotlinx.coroutines.sync.MutexImpl,kotlin.coroutines.jvm.internal.ContinuationImpl)
-    public static synthetic void unlock$default(kotlinx.coroutines.sync.MutexImpl)
+kotlinx.coroutines.flow.FlowKt__EmittersKt
 kotlinx.coroutines.flow.FlowKt__LimitKt
 kotlinx.coroutines.flow.FlowKt__MergeKt$mapLatest$1:
     public final java.lang.Object invoke$29()
@@ -37406,7 +37598,7 @@ kotlinx.coroutines.flow.ReadonlyStateFlow:
     public final kotlinx.coroutines.Job job
 kotlinx.coroutines.flow.SafeFlow
 kotlinx.coroutines.flow.SharedFlow
-kotlinx.coroutines.flow.SharedFlowImpl$$InternalSyntheticThrowCCEIfNotNull$194$8a81ae7abf994ef8d5da0c3a1e1fcc00bff1251b789a1cb954e12c66d854807b$0
+kotlinx.coroutines.flow.SharedFlowImpl$$InternalSyntheticThrowCCEIfNotNull$195$8a81ae7abf994ef8d5da0c3a1e1fcc00bff1251b789a1cb954e12c66d854807b$0
 kotlinx.coroutines.flow.SharedFlowImpl$WhenMappings
 kotlinx.coroutines.flow.SharedFlowImpl:
     public static void cancelEmitter()
@@ -37450,7 +37642,7 @@ kotlinx.coroutines.flow.StartedWhileSubscribed$command$1:
 kotlinx.coroutines.flow.StartedWhileSubscribed$command$2:
     public int label
     public final java.lang.Object invoke$31()
-kotlinx.coroutines.flow.StateFlowImpl$$InternalSyntheticThrowCCEIfNotNull$194$f1d1f40a1c8fc04c0a8d71575b6c25dc238f9224ed939db2b509a92e2c81cbda$0
+kotlinx.coroutines.flow.StateFlowImpl$$InternalSyntheticThrowCCEIfNotNull$195$f1d1f40a1c8fc04c0a8d71575b6c25dc238f9224ed939db2b509a92e2c81cbda$0
 kotlinx.coroutines.flow.StateFlowImpl:
     public final boolean compareAndSet(androidx.compose.runtime.external.kotlinx.collections.immutable.PersistentSet,androidx.compose.runtime.external.kotlinx.collections.immutable.implementations.persistentOrderedSet.PersistentOrderedSet)
     public static kotlinx.coroutines.flow.StateFlowSlot createSlot()
@@ -37605,7 +37797,7 @@ kotlinx.coroutines.internal.LockFreeTaskQueue$$InternalSyntheticBackportWithForw
 kotlinx.coroutines.internal.LockFreeTaskQueueCore$$InternalSyntheticBackportWithForwarding$2$7462db117c76b837bf4e5edf4b0c429120e865cbdac984d255c545faeba94ef0$0
 kotlinx.coroutines.internal.LockFreeTaskQueueCore$Companion
 kotlinx.coroutines.internal.LockFreeTaskQueueCore:
-    public static final kotlin.ranges.LongRange$Companion Companion
+    public static final kotlin.jvm.internal.ClassReference$Companion Companion
     public static kotlinx.coroutines.internal.LockFreeTaskQueueCore allocateNextCopy()
     public static kotlinx.coroutines.internal.LockFreeTaskQueueCore allocateOrGetNextCopy()
     public static kotlinx.coroutines.internal.LockFreeTaskQueueCore fillPlaceholder()
@@ -37633,12 +37825,12 @@ kotlinx.coroutines.internal.StackTraceRecoveryKt:
 kotlinx.coroutines.internal.Symbol
 kotlinx.coroutines.internal.SystemPropsKt
 kotlinx.coroutines.internal.SystemPropsKt__SystemProps_commonKt
-kotlinx.coroutines.internal.ThreadContextKt$countAll$1$$InternalSyntheticThrowCCEIfNotNull$231$0ee3fc021eff07e576417283c3f649d0bfd81e5c7dde16b0af94b2ddc784bfa2$0
-kotlinx.coroutines.internal.ThreadContextKt$countAll$1$$InternalSyntheticThrowCCEIfNotNull$231$0ee3fc021eff07e576417283c3f649d0bfd81e5c7dde16b0af94b2ddc784bfa2$2
+kotlinx.coroutines.internal.ThreadContextKt$countAll$1$$InternalSyntheticThrowCCEIfNotNull$233$0ee3fc021eff07e576417283c3f649d0bfd81e5c7dde16b0af94b2ddc784bfa2$0
+kotlinx.coroutines.internal.ThreadContextKt$countAll$1$$InternalSyntheticThrowCCEIfNotNull$233$0ee3fc021eff07e576417283c3f649d0bfd81e5c7dde16b0af94b2ddc784bfa2$2
 kotlinx.coroutines.internal.ThreadContextKt$countAll$1:
     public static kotlinx.coroutines.internal.ThreadState invoke()
-    public static void invoke$34()
     public static java.lang.Object invoke$35()
+    public static void invoke$35()
 kotlinx.coroutines.internal.ThreadContextKt$findOne$1
 kotlinx.coroutines.internal.ThreadContextKt$updateState$1
 kotlinx.coroutines.internal.ThreadContextKt:
@@ -37684,7 +37876,7 @@ kotlinx.coroutines.scheduling.CoroutineScheduler$Worker:
 kotlinx.coroutines.scheduling.CoroutineScheduler$WorkerState$EnumUnboxingLocalUtility
 kotlinx.coroutines.scheduling.CoroutineScheduler$WorkerState
 kotlinx.coroutines.scheduling.CoroutineScheduler:
-    public static final kotlin.ranges.LongRange$Companion Companion
+    public static final kotlin.jvm.internal.ClassReference$Companion Companion
     public static boolean addToGlobalQueue()
     public static kotlinx.coroutines.scheduling.Task createTask()
     public final kotlinx.coroutines.scheduling.CoroutineScheduler$Worker currentWorker()

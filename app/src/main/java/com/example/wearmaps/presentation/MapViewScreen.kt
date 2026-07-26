@@ -26,8 +26,11 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.rotary.onRotaryScrollEvent
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.wear.compose.foundation.CurvedLayout
+import androidx.wear.compose.foundation.curvedComposable
 import androidx.wear.compose.material.Text
 import com.example.wearmaps.location.GnssSatelliteInfo
 import com.example.wearmaps.location.LocationManagerHelper
@@ -61,7 +64,9 @@ fun MapViewScreen(
     var userGpsLocation by remember { mutableStateOf(locationHelper.currentLocation) }
     var gnssSatelliteInfo by remember { mutableStateOf(locationHelper.gnssInfo) }
     var savedPins by remember { mutableStateOf(locationHelper.getSavedPins()) }
+
     var showPinDialog by remember { mutableStateOf(false) }
+    var showAboutDialog by remember { mutableStateOf(false) }
 
     // Focus requester for physical rotary bezel
     val focusRequester = remember { FocusRequester() }
@@ -100,7 +105,6 @@ fun MapViewScreen(
         locationHelper.startLocationUpdates(
             onLocationChanged = { loc ->
                 userGpsLocation = loc
-                // Automatically re-center map on user's moving location if Auto-Center mode is ON
                 if (isAutoCenterMode) {
                     centerLat = loc.latitude
                     centerLon = loc.longitude
@@ -155,8 +159,6 @@ fun MapViewScreen(
             .pointerInput(Unit) {
                 detectDragGestures { change, dragAmount ->
                     change.consume()
-
-                    // User manually panned map: turn off auto-center tracking mode
                     isAutoCenterMode = false
 
                     val metersPerPixel = 156543.03392 * cos(Math.toRadians(centerLat)) / 2.0.pow(zoomLevel.toDouble())
@@ -226,7 +228,6 @@ fun MapViewScreen(
                 val userScreenX = screenCenterX + (gpsPixelX - centerPixelX).toFloat()
                 val userScreenY = screenCenterY + (gpsPixelY - centerPixelY).toFloat()
 
-                // Outer pulsing accuracy ring
                 val pulsePaint = Paint().apply {
                     color = android.graphics.Color.argb(80, 0, 230, 118)
                     style = Paint.Style.FILL
@@ -234,7 +235,6 @@ fun MapViewScreen(
                 }
                 nativeCanvas.drawCircle(userScreenX, userScreenY, 22f, pulsePaint)
 
-                // Main Location Dot
                 val dotPaint = Paint().apply {
                     color = android.graphics.Color.parseColor("#00E676")
                     style = Paint.Style.FILL
@@ -242,7 +242,6 @@ fun MapViewScreen(
                 }
                 nativeCanvas.drawCircle(userScreenX, userScreenY, 9f, dotPaint)
 
-                // Inner Core Dot
                 val corePaint = Paint().apply {
                     color = android.graphics.Color.WHITE
                     style = Paint.Style.FILL
@@ -282,14 +281,14 @@ fun MapViewScreen(
             nativeCanvas.restore()
         }
 
-        // Circular Smartwatch Overlay Controls
+        // Circular Smartwatch Overlay Controls & Bezel Alignment
         Box(modifier = Modifier.fillMaxSize()) {
 
             // Top Status Bar: GNSS Satellite Count, Zoom Level & Heading Mode
             Row(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(top = 10.dp)
+                    .padding(top = 22.dp)
                     .clip(RoundedCornerShape(12.dp))
                     .background(Color(0xCC000000))
                     .padding(horizontal = 8.dp, vertical = 3.dp),
@@ -344,14 +343,13 @@ fun MapViewScreen(
                 }
             }
 
-            // Left Edge Controls: Auto-Center GPS, Toggle Heading Mode & Manage Pins
+            // Left Edge Controls: Auto-Center GPS & Toggle Heading Mode
             Column(
                 modifier = Modifier
                     .align(Alignment.CenterStart)
                     .padding(start = 6.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                // Auto-Center GPS Button (Glowing Cyan when tracking mode is ON)
                 Box(
                     modifier = Modifier
                         .size(28.dp)
@@ -359,7 +357,7 @@ fun MapViewScreen(
                         .background(if (isAutoCenterMode) Color(0xDD00E676) else Color(0xDD1565C0))
                         .clickable {
                             userGpsLocation?.let { loc ->
-                                isAutoCenterMode = true // Enable continuous auto-center tracking
+                                isAutoCenterMode = true
                                 centerLat = loc.latitude
                                 centerLon = loc.longitude
                                 Toast.makeText(context, "🎯 Auto-Center ON", Toast.LENGTH_SHORT).show()
@@ -381,24 +379,14 @@ fun MapViewScreen(
                 ) {
                     Text(if (isHeadingUpMode) "🗺️" else "🧭", fontSize = 12.sp)
                 }
-                Box(
-                    modifier = Modifier
-                        .size(28.dp)
-                        .clip(CircleShape)
-                        .background(Color(0xDDAB47BC))
-                        .clickable { showPinDialog = true },
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text("📌", fontSize = 12.sp)
-                }
             }
 
-            // Bottom Control Bar: Offline Pre-Download & Save Pin
+            // Bottom Control Bar: Offline Download & Save Pin
             Row(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 12.dp),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    .padding(bottom = 10.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Box(
                     modifier = Modifier
@@ -409,9 +397,9 @@ fun MapViewScreen(
                             savedPins = locationHelper.getSavedPins()
                             Toast.makeText(context, "Saved ${newPin.name}!", Toast.LENGTH_SHORT).show()
                         }
-                        .padding(horizontal = 8.dp, vertical = 4.dp)
+                        .padding(horizontal = 8.dp, vertical = 3.dp)
                 ) {
-                    Text("+ Pin", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                    Text("+ Pin", color = Color.White, fontSize = 9.5.sp, fontWeight = FontWeight.Bold)
                 }
 
                 Box(
@@ -425,14 +413,36 @@ fun MapViewScreen(
                                 Toast.makeText(context, "Offline Map Ready!", Toast.LENGTH_SHORT).show()
                             }
                         }
-                        .padding(horizontal = 8.dp, vertical = 4.dp)
+                        .padding(horizontal = 8.dp, vertical = 3.dp)
                 ) {
-                    Text("⬇️ Offline", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                    Text("⬇️ Offline", color = Color.White, fontSize = 9.5.sp, fontWeight = FontWeight.Bold)
+                }
+            }
+
+            // Top Bezel Curved Navigation Bar
+            CurvedLayout(
+                anchor = 270f,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                curvedComposable {
+                    BezelPill("🗺️ Map", selected = true) { }
+                }
+                curvedComposable {
+                    Spacer(modifier = Modifier.width(3.dp))
+                }
+                curvedComposable {
+                    BezelPill("📌 Pins (${savedPins.size})", selected = false) { showPinDialog = true }
+                }
+                curvedComposable {
+                    Spacer(modifier = Modifier.width(3.dp))
+                }
+                curvedComposable {
+                    BezelPill("⚙️ About", selected = false) { showAboutDialog = true }
                 }
             }
         }
 
-        // Manage Saved Pins Modal Dialog
+        // Saved Pins Dialog
         if (showPinDialog) {
             Box(
                 modifier = Modifier
@@ -490,7 +500,7 @@ fun MapViewScreen(
                                         .clip(RoundedCornerShape(10.dp))
                                         .background(Color(0xFF2C2C2E))
                                         .clickable {
-                                            isAutoCenterMode = false // Switch off auto-center to jump to saved pin
+                                            isAutoCenterMode = false
                                             centerLat = pin.latitude
                                             centerLon = pin.longitude
                                             showPinDialog = false
@@ -505,7 +515,6 @@ fun MapViewScreen(
                                         Text("%.4f, %.4f".format(pin.latitude, pin.longitude), color = Color.LightGray, fontSize = 9.sp)
                                     }
 
-                                    // Delete Individual Pin Button
                                     Box(
                                         modifier = Modifier
                                             .size(24.dp)
@@ -544,9 +553,92 @@ fun MapViewScreen(
                 }
             }
         }
+
+        // About App Dialog
+        if (showAboutDialog) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xF0000000))
+                    .padding(14.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(Color(0xFF1C1C1E))
+                        .padding(12.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text("⚙️ About WearMaps", color = Color(0xFF00E676), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        Box(
+                            modifier = Modifier
+                                .size(22.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFF333336))
+                                .clickable { showAboutDialog = false },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("✕", color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    LazyColumn(
+                        modifier = Modifier.weight(1f),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        item {
+                            Text("🗺️ WearMaps v1.2.0", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Text("By Aju George", color = Color.Gray, fontSize = 10.sp, modifier = Modifier.padding(bottom = 6.dp))
+                        }
+                        item {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(10.dp))
+                                    .background(Color(0xFF2C2C2E))
+                                    .padding(8.dp)
+                            ) {
+                                Text("• Skia 2D Raster & Vector Engine", color = Color.LightGray, fontSize = 9.sp)
+                                Text("• Dynamic GPS Auto-Center Tracking", color = Color.LightGray, fontSize = 9.sp)
+                                Text("• GNSS Satellite Counter Overlay", color = Color.LightGray, fontSize = 9.sp)
+                                Text("• Region Offline Pre-downloader", color = Color.LightGray, fontSize = 9.sp)
+                                Text("• Target: Samsung Galaxy Watch 6", color = Color(0xFF0288D1), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     LaunchedEffect(Unit) {
         focusRequester.requestFocus()
+    }
+}
+
+@Composable
+fun BezelPill(text: String, selected: Boolean, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(8.dp))
+            .background(if (selected) Color(0xFF00E676) else Color(0xFF2C2C2E))
+            .clickable { onClick() }
+            .padding(horizontal = 6.dp, vertical = 2.dp)
+    ) {
+        Text(
+            text = text,
+            color = if (selected) Color.Black else Color.Gray,
+            fontSize = 8.sp,
+            fontWeight = FontWeight.Bold
+        )
     }
 }
