@@ -4,7 +4,7 @@
     "type": "COMPATIBLE_SCREEN_MANIFEST",
     "kind": "Directory"
   },
-  "applicationId": "com.example.wearmaps",
+  "applicationId": "com.ajimsjames.wearmaps",
   "variantName": "release",
   "elements": []
 }

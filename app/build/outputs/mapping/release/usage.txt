@@ -17357,6 +17357,10 @@ androidx.wear.compose.navigation.SwipeDismissableNavHostState
 androidx.wear.compose.navigation.WearNavigator$Companion
 androidx.wear.compose.navigation.WearNavigator$Destination
 androidx.wear.compose.navigation.WearNavigator
+com.ajimsjames.wearmaps.R$drawable
+com.ajimsjames.wearmaps.R$string
+com.ajimsjames.wearmaps.R$style
+com.ajimsjames.wearmaps.R
 com.google.android.gms.actions.ItemListIntents
 com.google.android.gms.actions.NoteIntents
 com.google.android.gms.actions.ReserveIntents

@@ -1,4 +1,4 @@
-com.example.wearmaps
+com.ajimsjames.wearmaps
 attr action
 attr alpha
 attr argType

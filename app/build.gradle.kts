@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "com.example.wearmaps"
+    namespace = "com.ajimsjames.wearmaps"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.wearmaps"
+        applicationId = "com.ajimsjames.wearmaps"
         minSdk = 30
         targetSdk = 33
-        versionCode = 5
-        versionName = "1.4.0"
+        versionCode = 6
+        versionName = "2.0.0"
 
         vectorDrawables {
             useSupportLibrary = true
