@@ -6,6 +6,7 @@ import android.graphics.Paint
 import android.widget.Toast
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
@@ -67,6 +68,9 @@ fun MapViewScreen(
 
     var showPinDialog by remember { mutableStateOf(false) }
     var showAboutDialog by remember { mutableStateOf(false) }
+
+    // Active Navigation Target
+    var activeNavDestination by remember { mutableStateOf<MapPin?>(null) }
 
     // Focus requester for physical rotary bezel
     val focusRequester = remember { FocusRequester() }
@@ -278,6 +282,36 @@ fun MapViewScreen(
                 nativeCanvas.drawText(pin.name, pinScreenX, pinScreenY - 14f, textPaint)
             }
 
+            // Draw Route Navigation Line if active
+            activeNavDestination?.let { navDest ->
+                userGpsLocation?.let { gpsLoc ->
+                    val userExactX = (gpsLoc.longitude + 180.0) / 360.0 * n
+                    val userLatRad = Math.toRadians(gpsLoc.latitude)
+                    val userExactY = (1.0 - asinh(tan(userLatRad)) / PI) / 2.0 * n
+                    val userPixelX = userExactX * tileSize
+                    val userPixelY = userExactY * tileSize
+                    val userScreenX = screenCenterX + (userPixelX - centerPixelX).toFloat()
+                    val userScreenY = screenCenterY + (userPixelY - centerPixelY).toFloat()
+
+                    val destExactX = (navDest.longitude + 180.0) / 360.0 * n
+                    val destLatRad = Math.toRadians(navDest.latitude)
+                    val destExactY = (1.0 - asinh(tan(destLatRad)) / PI) / 2.0 * n
+                    val destPixelX = destExactX * tileSize
+                    val destPixelY = destExactY * tileSize
+                    val destScreenX = screenCenterX + (destPixelX - centerPixelX).toFloat()
+                    val destScreenY = screenCenterY + (destPixelY - centerPixelY).toFloat()
+
+                    val linePaint = Paint().apply {
+                        color = android.graphics.Color.parseColor("#00E676")
+                        strokeWidth = 6f
+                        style = Paint.Style.STROKE
+                        pathEffect = android.graphics.DashPathEffect(floatArrayOf(12f, 12f), 0f)
+                        isAntiAlias = true
+                    }
+                    nativeCanvas.drawLine(userScreenX, userScreenY, destScreenX, destScreenY, linePaint)
+                }
+            }
+
             nativeCanvas.restore()
         }
 
@@ -288,7 +322,7 @@ fun MapViewScreen(
             Row(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(top = 38.dp)
+                    .padding(top = 50.dp)
                     .clip(RoundedCornerShape(12.dp))
                     .background(Color(0xCC000000))
                     .padding(horizontal = 8.dp, vertical = 3.dp),
@@ -381,12 +415,83 @@ fun MapViewScreen(
                 }
             }
 
+            // Navigation HUD Overlay
+            activeNavDestination?.let { navDest ->
+                userGpsLocation?.let { gpsLoc ->
+                    val results = FloatArray(2)
+                    android.location.Location.distanceBetween(
+                        gpsLoc.latitude, gpsLoc.longitude,
+                        navDest.latitude, navDest.longitude,
+                        results
+                    )
+                    val distanceMeters = results[0]
+                    val targetBearing = results[1]
+                    val currentHeading = headingAngle
+                    val relativeSteer = (targetBearing - currentHeading + 360) % 360
+
+                    val formattedDist = if (distanceMeters >= 1000) {
+                        "%.1f km".format(distanceMeters / 1000f)
+                    } else {
+                        "${distanceMeters.toInt()}m"
+                    }
+
+                    // Steer direction arrow and text
+                    val steerArrow = when {
+                        relativeSteer < 22.5 || relativeSteer > 337.5 -> "⬆️ Straight"
+                        relativeSteer in 22.5..67.5 -> "↗️ Steer Right"
+                        relativeSteer in 67.5..157.5 -> "➡️ Turn Right"
+                        relativeSteer in 157.5..202.5 -> "⬇️ Turn Around"
+                        relativeSteer in 202.5..292.5 -> "⬅️ Turn Left"
+                        else -> "↖️ Steer Left"
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .padding(bottom = 60.dp) // Sits above bottom bezel buttons
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(Color(0xFA1A237E)) // Dark blue premium alert style
+                            .border(1.dp, Color(0xFF00E676), RoundedCornerShape(12.dp))
+                            .padding(horizontal = 8.dp, vertical = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = "🎯 Nav: ${navDest.name}",
+                                color = Color.White,
+                                fontSize = 8.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "$steerArrow • $formattedDist",
+                                color = Color(0xFF00E676),
+                                fontSize = 9.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                        Box(
+                            modifier = Modifier
+                                .size(18.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFFD32F2F))
+                                .clickable { activeNavDestination = null },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("✕", color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                        }
+                    }
+                }
+            }
+
             // Bottom Control Bar: Offline Download & Save Pin
             Row(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 10.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    .padding(bottom = 26.dp) // raised bottom margin to align with bezel
+                    .fillMaxWidth(0.72f), // narrowed width to fit round screen
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Box(
                     modifier = Modifier
@@ -397,7 +502,7 @@ fun MapViewScreen(
                             savedPins = locationHelper.getSavedPins()
                             Toast.makeText(context, "Saved ${newPin.name}!", Toast.LENGTH_SHORT).show()
                         }
-                        .padding(horizontal = 8.dp, vertical = 3.dp)
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
                     Text("+ Pin", color = Color.White, fontSize = 9.5.sp, fontWeight = FontWeight.Bold)
                 }
@@ -413,7 +518,7 @@ fun MapViewScreen(
                                 Toast.makeText(context, "Offline Map Ready!", Toast.LENGTH_SHORT).show()
                             }
                         }
-                        .padding(horizontal = 8.dp, vertical = 3.dp)
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
                     Text("⬇️ Offline", color = Color.White, fontSize = 9.5.sp, fontWeight = FontWeight.Bold)
                 }
@@ -515,19 +620,45 @@ fun MapViewScreen(
                                         Text("%.4f, %.4f".format(pin.latitude, pin.longitude), color = Color.LightGray, fontSize = 9.sp)
                                     }
 
-                                    Box(
-                                        modifier = Modifier
-                                            .size(24.dp)
-                                            .clip(CircleShape)
-                                            .background(Color(0xFFD32F2F))
-                                            .clickable {
-                                                locationHelper.deletePin(pin.id)
-                                                savedPins = locationHelper.getSavedPins()
-                                                Toast.makeText(context, "Pin Deleted", Toast.LENGTH_SHORT).show()
-                                            },
-                                        contentAlignment = Alignment.Center
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.spacedBy(4.dp)
                                     ) {
-                                        Text("🗑️", fontSize = 10.sp)
+                                        // Navigate Button
+                                        Box(
+                                            modifier = Modifier
+                                                .size(24.dp)
+                                                .clip(CircleShape)
+                                                .background(Color(0xFF00E676))
+                                                .clickable {
+                                                    activeNavDestination = pin
+                                                    isAutoCenterMode = true
+                                                    showPinDialog = false
+                                                    Toast.makeText(context, "Navigating to ${pin.name}!", Toast.LENGTH_SHORT).show()
+                                                },
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Text("🧭", fontSize = 10.sp)
+                                        }
+
+                                        // Delete Button
+                                        Box(
+                                            modifier = Modifier
+                                                .size(24.dp)
+                                                .clip(CircleShape)
+                                                .background(Color(0xFFD32F2F))
+                                                .clickable {
+                                                    locationHelper.deletePin(pin.id)
+                                                    savedPins = locationHelper.getSavedPins()
+                                                    if (activeNavDestination?.id == pin.id) {
+                                                        activeNavDestination = null
+                                                    }
+                                                    Toast.makeText(context, "Pin Deleted", Toast.LENGTH_SHORT).show()
+                                                },
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Text("🗑️", fontSize = 10.sp)
+                                        }
                                     }
                                 }
                             }
