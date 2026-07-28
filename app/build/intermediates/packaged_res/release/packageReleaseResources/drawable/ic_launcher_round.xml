@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     android:width="108dp"
@@ -5,32 +6,22 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
     <path
-        android:pathData="M 54,4 C 81.6,4 104,26.4 104,54 C 104,81.6 81.6,104 54,104 C 26.4,104 4,81.6 4,54 C 4,26.4 26.4,4 54,4 Z">
+        android:pathData="M 54,4 C 78.5,4 96,4 100,20 C 104,36 104,72 100,88 C 96,104 78.5,104 54,104 C 29.5,104 12,104 8,88 C 4,72 4,36 8,20 C 12,4 29.5,4 54,4 Z">
         <aapt:attr name="android:fillColor">
             <gradient
-                android:startX="54"
+                android:startX="4"
                 android:startY="4"
-                android:endX="54"
+                android:endX="104"
                 android:endY="104"
                 android:type="linear">
-                <item android:offset="0.0" android:color="#FF00E676" />
-                <item android:offset="1.0" android:color="#FF004D40" />
+                                <item android:offset="0.0" android:color="#FF00E676" />\n                <item android:offset="1.0" android:color="#FF1B5E20" />
             </gradient>
         </aapt:attr>
     </path>
     <path
-        android:pathData="M24,34 L84,34 M24,54 L84,54 M24,74 L84,74 M39,24 L39,84 M69,24 L69,84"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="2"
-        android:strokeLineCap="round" />
-    <path
-        android:pathData="M54,54 m-20,0 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0"
-        android:strokeColor="#88FFFFFF"
-        android:strokeWidth="2" />
-    <path
-        android:pathData="M54,26 C43.5,26 35,34.5 35,45 C35,59 54,80 54,80 C54,80 73,59 73,45 C73,34.5 64.5,26 54,26 Z"
-        android:fillColor="#FFFFFFFF" />
-    <path
-        android:pathData="M54,45 m-7,0 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0"
-        android:fillColor="#FF004D40" />
+        android:pathData="M 34,38 L 48,30 L 60,38 L 74,30 L 74,70 L 60,78 L 48,70 L 34,78 Z"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
 </vector>
