@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ajimsjames.wearmaps"
     android:versionCode="6"
-    android:versionName="2.0.0" >
+    android:versionName="2.1.0" >
 
     <uses-sdk
         android:minSdkVersion="30"
